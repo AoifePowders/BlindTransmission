@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Cat.h"
+#include "screenSize.h"
 
 class Game
 {

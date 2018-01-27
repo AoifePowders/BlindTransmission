@@ -2,7 +2,7 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 1800, 1600, 32 }, "SFML Game" },
+	m_window{ sf::VideoMode{ unsigned(screenSize::s_width), unsigned(screenSize::s_height), 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 

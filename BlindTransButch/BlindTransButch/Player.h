@@ -1,6 +1,7 @@
 #ifndef PLAYER
 #define PLAYER
 #include<SFML\Graphics.hpp>
+#include "screenSize.h"
 
 class Player
 {
