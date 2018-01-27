@@ -5,6 +5,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Cat.h"
 
 class Game
 {
@@ -26,6 +27,7 @@ private:
 	bool m_exitGame; 
 
 	Enemy m_enemy;
+	Cat m_cat;
 
 };
 

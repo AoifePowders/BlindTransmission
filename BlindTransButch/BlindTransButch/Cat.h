@@ -1,24 +1,24 @@
-#ifndef ENEMY
-#define ENEMY
+#ifndef CAT
+#define CAT
 
 #include <SFML\Graphics.hpp>
 #include <iostream>
 
-class Enemy
+class Cat
 {
 public:
-	Enemy();
-	~Enemy();
+	Cat();
+	~Cat();
 
 	void update();
 	void render(sf::RenderWindow & t_window);
 
-	bool m_isMoving;
 	sf::Vector2f m_position{ 200,200 };
-	
+
+	bool m_meowing;
 private:
 	sf::RectangleShape m_body;
-	sf::Texture m_knucklesTexture;
-};
+	sf::Texture m_catTexture;
 
-#endif // !ENEMY
+};
+#endif // !CAT
