@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "Cat.h"
 #include "screenSize.h"
+#include "Grid.h"
 
 class Game
 {
@@ -35,6 +36,8 @@ private:
 
 	Enemy m_enemy;
 	Cat m_cat;
+
+	Grid world;
 
 
 };
