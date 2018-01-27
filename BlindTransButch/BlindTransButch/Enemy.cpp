@@ -7,7 +7,7 @@ Enemy::Enemy()
 		std::cout << "Knuckles not loaded" << std::endl;
 	}
 
-	m_body.setSize(sf::Vector2f(261, 300));
+	m_body.setSize(sf::Vector2f(150, 189));
 	m_body.setTexture(&m_knucklesTexture);
 	m_body.setFillColor(sf::Color(255, 255, 255, 150));
 }
