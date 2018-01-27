@@ -78,6 +78,7 @@ void Grid::initialise(int level)
 		std::make_shared<sf::Texture>(radioTexture),
 		86);
 	tCount = 0;
+	map.clear();
 	for (int y = 0; y < m_height; y++)
 	{
 		for (int x = 0; x < m_width; x++)
