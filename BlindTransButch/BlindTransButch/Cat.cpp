@@ -4,7 +4,7 @@
 
 Cat::Cat()
 {
-	m_body.setSize(sf::Vector2f(50, 50));
+	m_body.setSize(sf::Vector2f(64, 64));
 	m_body.setFillColor(sf::Color::Yellow);
 }
 
