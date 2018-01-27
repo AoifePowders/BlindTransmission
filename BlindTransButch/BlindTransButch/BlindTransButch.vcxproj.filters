@@ -1,36 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
-    <ClCompile Include="Cat.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="Vase.cpp" />
-    <ClCompile Include="Xbox360Controller.cpp" />
-    <ClCompile Include="LevelLoader.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Audio.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Xbox360Controller.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vase.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h" />
-    <ClInclude Include="Cat.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="screenSize.h" />
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="Vase.h" />
-    <ClInclude Include="Xbox360Controller.h" />
-    <ClInclude Include="LevelLoader.h" />
-    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Audio.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="screenSize.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Vase.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Xbox360Controller.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
-    <Image Include="ASSETS\IMAGES\Knuckles.png" />
+    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\Knuckles.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="ASSETS\FONTS\ariblk.ttf" />
+    <Filter Include="Resources">
+      <UniqueIdentifier>{c41ffbb1-f0a4-4002-ae99-0aa0d2264da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{0f409097-93b6-4082-8a08-05678bb15175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{8794918c-c5f2-42ed-8314-0d7c5b1721e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="ASSETS\FONTS\ariblk.ttf">
+      <Filter>Resources</Filter>
+    </Font>
   </ItemGroup>
 </Project>
