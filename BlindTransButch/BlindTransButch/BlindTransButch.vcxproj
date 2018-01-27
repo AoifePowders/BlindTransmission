@@ -49,6 +49,9 @@
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\floor.png" />
     <Image Include="ASSETS\IMAGES\Knuckles.png" />
+    <Image Include="ASSETS\IMAGES\Player Walk1.png" />
+    <Image Include="ASSETS\IMAGES\Player Walk2.png" />
+    <Image Include="ASSETS\IMAGES\Player.png" />
     <Image Include="ASSETS\IMAGES\wall.png" />
   </ItemGroup>
   <ItemGroup>
