@@ -13,7 +13,11 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Cat.h" />
+<<<<<<< HEAD
     <ClInclude Include="Audio.h" />
+=======
+    <ClInclude Include="screenSize.h" />
+>>>>>>> EoinsBranch
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
