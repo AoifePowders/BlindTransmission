@@ -1,8 +1,10 @@
+
 #include "Game.h"
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 1152, 640, 32 }, "SFML Game" },
+
+	m_window{ sf::VideoMode{ unsigned(screenSize::s_width), unsigned(screenSize::s_height), 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
@@ -75,6 +77,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	m_player.render(m_window);
+	m_cat.render(m_window);
 	m_enemy.render(m_window);
 	m_window.display();
 }

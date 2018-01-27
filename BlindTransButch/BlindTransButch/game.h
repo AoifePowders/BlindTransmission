@@ -2,10 +2,14 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include "Audio.h"
 
 #include "Player.h"
 #include "Enemy.h"
 #include "Xbox360Controller.h"
+#include "Cat.h"
+#include "screenSize.h"
+
 
 class Game
 {
@@ -23,11 +27,17 @@ private:
 	
 	void setupFontAndText();
 
-	sf::RenderWindow m_window; 
-	sf::Font m_ArialBlackfont; 
-	bool m_exitGame; 
+	sf::RenderWindow m_window; // main SFML window
+	sf::Font m_ArialBlackfont; // font used by message
+	sf::Text m_welcomeMessage; // text used for message on screen
+	sf::Texture m_logoTexture; // texture used for sfml logo
+	sf::Sprite m_logoSprite; // sprite used for sfml logo
+	bool m_exitGame; // control exiting game
+	Audio musik;
 
 	Enemy m_enemy;
+	Cat m_cat;
+
 
 };
 

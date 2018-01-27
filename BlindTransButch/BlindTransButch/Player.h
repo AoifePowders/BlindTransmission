@@ -2,6 +2,8 @@
 #define PLAYER
 #include<SFML\Graphics.hpp>
 #include "Xbox360Controller.h"
+#include "screenSize.h"
+
 
 class Player
 {
