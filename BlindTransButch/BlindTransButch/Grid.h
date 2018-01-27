@@ -42,7 +42,6 @@ public:
 	std::string tableTexturePath;
 	std::string chairTexturePath;
 	std::string bedTexturePath;
-	std::string radioTexturePath;
 
 	std::vector<std::shared_ptr<Tile>> map;
 	int tCount = 0;

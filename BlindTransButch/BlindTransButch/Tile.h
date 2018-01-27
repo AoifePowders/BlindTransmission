@@ -19,7 +19,6 @@ public:
 		std::shared_ptr<sf::Texture> _tableTexture,
 		std::shared_ptr<sf::Texture> _chairTexture,
 		std::shared_ptr<sf::Texture> _bedTexture,
-		std::shared_ptr<sf::Texture> _radioTexture,
 		int const size);
 	~Tile();
 
@@ -35,10 +34,8 @@ public:
 	std::shared_ptr<sf::Texture> chairTexture;
 	std::shared_ptr<sf::Texture> tableTexture;
 	std::shared_ptr<sf::Texture> bedTexture;
-	std::shared_ptr<sf::Texture> radioTexture;
 	enum TileType 
 	{ 
-		RADIO,
 		BED, 
 		TABLE,
 		CHAIR,
