@@ -49,6 +49,9 @@ private:
 	CollisionManager cManager;
 	void checkCollision();
 
+	std::vector<std::shared_ptr<Audio>> playerSounds;
+	std::shared_ptr<Audio> a;
+
 };
 
 #endif // !GAME

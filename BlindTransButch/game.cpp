@@ -8,7 +8,11 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	m_player.setUp();
+	for (int i = 0; i < 4; i++)
+	{
+		playerSounds.push_back(a);
+	}
+	m_player.setUp(playerSounds);
 	m_controller.connect();
 }
 
