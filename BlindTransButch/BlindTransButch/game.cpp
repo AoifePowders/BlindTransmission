@@ -2,18 +2,16 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 1800, 1600, 32 }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1152, 640, 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
 	m_player.setUp();
 }
 
-
 Game::~Game()
 {
 }
-
 
 void Game::run()
 {
@@ -67,8 +65,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-		m_player.move();
-	
+	m_player.move(m_controller);
 }
 
 /// <summary>

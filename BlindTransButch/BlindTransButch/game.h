@@ -5,6 +5,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Xbox360Controller.h"
 
 class Game
 {
@@ -15,6 +16,7 @@ public:
 
 private:
 	Player m_player;
+	Xbox360Controller m_controller;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();

@@ -23,11 +23,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
