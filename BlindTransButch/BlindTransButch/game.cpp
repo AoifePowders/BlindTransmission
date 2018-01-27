@@ -27,7 +27,7 @@ void Game::run()
 	world.initialise(1);
 
 
-
+         
 	while (m_window.isOpen())
 	{
 		processEvents(); // as many as possible

@@ -37,6 +37,7 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -75,6 +76,7 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png">
