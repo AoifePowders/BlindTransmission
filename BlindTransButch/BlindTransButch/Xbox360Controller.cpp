@@ -2,21 +2,7 @@
 
 Xbox360Controller::Xbox360Controller()
 {
-	m_currentState.A = false;
-	m_currentState.B = false;
-	m_currentState.X = false;
-	m_currentState.Y = false;
-	m_currentState.LB = false;
-	m_currentState.RB = false;
-	m_currentState.LeftThumbStickClick = false;
-	m_currentState.RightThumbStickClick = false;
-	m_currentState.DpadUp = false;
-	m_currentState.DpadDown = false;
-	m_currentState.DpadLeft = false;
-	m_currentState.DpadRight = false;
-	m_currentState.Start = false;
-	m_currentState.Back = false;
-	m_currentState.Xbox = false;
+	connect();
 }
 
 Xbox360Controller::~Xbox360Controller()
@@ -171,7 +157,15 @@ void Xbox360Controller::update()
 			m_currentState.DpadRight = false;
 		}
 
-		m_currentState.Ltrigger = sf::Joystick::getAxisPosition(sf_Joystick_index, sf::Joystick::Axis::V);
+		if (sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Z) < -5.f)
+		{
+			m_currentState.Rtrigger = sf::Joystick::getAxisPosition(sf_Joystick_index, sf::Joystick::Axis::Z);
+		}
+
+		if (sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Z) > 15.f)
+		{
+			m_currentState.Ltrigger = sf::Joystick::getAxisPosition(sf_Joystick_index, sf::Joystick::Axis::Z);
+		}
 	}
 
 }

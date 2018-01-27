@@ -9,6 +9,7 @@ Game::Game() :
 {
 	setupFontAndText(); // load font 
 	m_player.setUp();
+	m_controller.connect();
 }
 
 Game::~Game()
@@ -29,6 +30,7 @@ void Game::run()
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
 			update(timePerFrame); //60 fps
+			m_player.update(timePerFrame, m_controller);
 		}
 		render(); // as many as possible
 	}
@@ -55,6 +57,13 @@ void Game::processEvents()
 			}
 		}
 	}
+	if (m_controller.isConnected())
+	{
+		if (m_controller.m_currentState.Back)
+		{
+			m_window.close();
+		}
+	}
 }
 
 /// <summary>
@@ -63,11 +72,42 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+	if (m_controller.isConnected())
+	{
+		m_controller.update();
+	}
+	else
+	{
+		m_controller.connect();
+	}
+	m_controller.m_previousState = m_controller.m_currentState;
+
 	if (m_exitGame)
 	{
 		m_window.close();
 	}
+
+	//m_player.boundary();
+
+	if (m_player.m_position.x == 0)
+	{
+		m_player.m_player.setPosition(m_player.m_position.x + 1, m_player.m_position.y);
+	}
+	if (m_player.m_position.y == 0)
+	{
+		m_player.m_player.setPosition(m_player.m_position.x, m_player.m_position.y + 1);
+	}
+	if (m_player.m_position.x == screenSize::s_width)
+	{
+		m_player.m_player.setPosition(m_player.m_position.x - 1, m_player.m_position.y);
+	}
+	if (m_player.m_position.y == screenSize::s_height)
+	{
+		m_player.m_player.setPosition(m_player.m_position.x, m_player.m_position.y - 1);
+	}
+
 	m_player.move(m_controller);
+
 }
 
 /// <summary>

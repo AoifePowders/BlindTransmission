@@ -9,21 +9,21 @@
 /// </summary>
 struct GamePadState
 {
-	bool A;
-	bool B;
-	bool X;
-	bool Y;
-	bool LB;
-	bool RB;
-	bool LeftThumbStickClick;
-	bool RightThumbStickClick;
-	bool DpadUp;
-	bool DpadDown;
-	bool DpadLeft;
-	bool DpadRight;
-	bool Start;
-	bool Back;
-	bool Xbox;
+	bool A{ false };
+	bool B{ false };
+	bool X{ false };
+	bool Y{ false };
+	bool LB{ false };
+	bool RB{ false };
+	bool LeftThumbStickClick{ false };
+	bool RightThumbStickClick{ false };
+	bool DpadUp{ false };
+	bool DpadDown{ false };
+	bool DpadLeft{ false };
+	bool DpadRight{ false };
+	bool Start{ false };
+	bool Back{ false };
+	bool Xbox{ false };
 	float Rtrigger;
 	float Ltrigger;
 	sf::Vector2f RightThumbStick;
