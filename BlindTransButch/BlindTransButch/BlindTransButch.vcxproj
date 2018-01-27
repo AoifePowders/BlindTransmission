@@ -45,8 +45,9 @@
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
+    <Image Include="ASSETS\IMAGES\floor.png" />
     <Image Include="ASSETS\IMAGES\Knuckles.png" />
+    <Image Include="ASSETS\IMAGES\wall.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="ASSETS\FONTS\ariblk.ttf" />

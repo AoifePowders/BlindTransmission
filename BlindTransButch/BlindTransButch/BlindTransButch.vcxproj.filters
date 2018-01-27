@@ -71,10 +71,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png">
+    <Image Include="ASSETS\IMAGES\Knuckles.png">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="ASSETS\IMAGES\Knuckles.png">
+    <Image Include="ASSETS\IMAGES\floor.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\wall.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
