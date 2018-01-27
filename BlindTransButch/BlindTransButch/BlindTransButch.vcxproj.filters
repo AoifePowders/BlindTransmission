@@ -40,6 +40,7 @@
     <ClCompile Include="SoundEmitter.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Radio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -81,6 +82,7 @@
     <ClInclude Include="SoundEmitter.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="Radio.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\Knuckles.png">

@@ -111,9 +111,9 @@ void Game::render()
 	m_window.clear(sf::Color::Black);
 	world.render(m_window);
 	m_player.render(m_window);
+	m_vase.render(m_window);
 	m_cat.render(m_window);
 	m_enemy.render(m_window);
-	m_vase.render(m_window);
 	m_window.display();
 }
 
