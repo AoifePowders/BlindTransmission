@@ -11,6 +11,15 @@
 #include "screenSize.h"
 #include "Grid.h"
 #include "CollisionManager.h"
+#include "MainMenu.h"
+
+enum class GameState
+{
+	MAINMENU,
+	PLAYING,
+	WIN,
+	LOSE
+};
 
 class Game
 {
@@ -19,13 +28,14 @@ public:
 	~Game();
 	void run();
 
+	static GameState m_currentState;
+
 private:
 	Player m_player;
 	Xbox360Controller m_controller;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
-	
 	void setupFontAndText();
 
 	sf::RenderWindow m_window; // main SFML window
@@ -38,7 +48,7 @@ private:
 
 	Enemy m_enemy;
 	Cat m_cat;
-
+	MainMenu m_mainMenuScreen;
 	Grid world;
 
 	int currentLevel = 1;
