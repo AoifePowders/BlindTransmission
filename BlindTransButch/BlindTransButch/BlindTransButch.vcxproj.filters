@@ -7,6 +7,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -16,6 +19,9 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="screenSize.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
