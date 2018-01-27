@@ -20,6 +20,13 @@ void Game::run()
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	sf::Time timePerFrame = sf::seconds(1.f / 60.f); // 60 fps
+
+
+	//Initialise
+	world.initialise(1);
+
+
+
 	while (m_window.isOpen())
 	{
 		processEvents(); // as many as possible
@@ -67,7 +74,12 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+<<<<<<< HEAD
+		m_player.move();
+		world.update();
+=======
 	m_player.move(m_controller);
+>>>>>>> master
 }
 
 /// <summary>
@@ -76,6 +88,7 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
+	world.render(m_window);
 	m_player.render(m_window);
 	m_cat.render(m_window);
 	m_enemy.render(m_window);
