@@ -15,7 +15,7 @@ public:
 
 	sf::Vector2f m_position{ 200,200 };
 
-	bool m_meowing;
+	bool m_meowing{ false };
 private:
 	sf::RectangleShape m_body;
 	sf::Texture m_catTexture;
