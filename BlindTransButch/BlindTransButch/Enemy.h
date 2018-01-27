@@ -15,8 +15,10 @@ public:
 
 	bool m_isMoving;
 
+
 private:
 	sf::RectangleShape m_body;
+
 	sf::Texture m_knucklesTexture;
 };
 
