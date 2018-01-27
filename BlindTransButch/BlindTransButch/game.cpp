@@ -74,12 +74,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-<<<<<<< HEAD
-		m_player.move();
-		world.update();
-=======
+	world.update();
 	m_player.move(m_controller);
->>>>>>> master
 }
 
 /// <summary>
