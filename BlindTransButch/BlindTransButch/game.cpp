@@ -1,16 +1,14 @@
 // author Peter Lowe
-
 #include "Game.h"
 #include <iostream>
 
-
-
 Game::Game() :
-	m_window{ sf::VideoMode{ 800, 600, 32 }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1800, 1600, 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
+	m_player.setUp();
 }
 
 
@@ -78,7 +76,8 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
+	m_window.clear(sf::Color::Black);
+	m_player.render(m_window);
 	m_window.draw(m_welcomeMessage);
 	m_window.draw(m_logoSprite);
 	m_window.display();

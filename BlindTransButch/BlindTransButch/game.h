@@ -3,6 +3,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include "Player.h"
 
 class Game
 {
@@ -15,7 +16,7 @@ public:
 	void run();
 
 private:
-
+	Player m_player;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
