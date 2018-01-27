@@ -10,10 +10,11 @@ public:
 
 	void setUp();
 	void move();
+	void boundary();
 	void render(sf::RenderWindow & t_window);
 	
 	sf::RectangleShape m_player;
-	sf::Vector2f m_size{ 20.0f,20.0f };
+	sf::Vector2f m_size{ 50.0f,50.0f };
 	sf::Vector2f m_position{ 500.f, 500.0f };
 };
 #endif // !PLAYER
