@@ -57,26 +57,6 @@ void Player::move(Xbox360Controller &t_controller)
 	m_player.setPosition(m_position);
 }
 
-void Player::boundary()
-{
-	if (m_position.x == 0)
-	{
-		m_player.setPosition(m_position.x + 1, m_position.y);
-	}
-	if (m_position.y == 0)
-	{
-		m_player.setPosition(m_position.x, m_position.y + 1);
-	}
-	if (m_position.x == screenSize::s_width)
-	{
-		m_player.setPosition(m_position.x - 1, m_position.y);
-	}
-	if (m_position.y == screenSize::s_height)
-	{
-		m_player.setPosition(m_position.x, m_position.y - 1);
-	}
-}
-
 void Player::render(sf::RenderWindow & t_window)
 {
 	t_window.draw(m_player);

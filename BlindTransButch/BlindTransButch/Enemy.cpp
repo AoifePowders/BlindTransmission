@@ -17,12 +17,20 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::update()
+void Enemy::update(sf::Vector2f t_soundPos)
 {
+	if (m_isMoving)
+	{
+		move(t_soundPos);
+	}
 }
 
 void Enemy::render(sf::RenderWindow & t_window)
 {
 	t_window.draw(m_body);
+}
+
+void Enemy::move(sf::Vector2f t_soundPos)
+{
 }
 
