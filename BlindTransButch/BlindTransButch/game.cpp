@@ -94,25 +94,6 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	//m_player.boundary();
-
-	if (m_player.m_position.x == 0)
-	{
-		m_player.m_player.setPosition(m_player.m_position.x + 1, m_player.m_position.y);
-	}
-	if (m_player.m_position.y == 0)
-	{
-		m_player.m_player.setPosition(m_player.m_position.x, m_player.m_position.y + 1);
-	}
-	if (m_player.m_position.x == screenSize::s_width)
-	{
-		m_player.m_player.setPosition(m_player.m_position.x - 1, m_player.m_position.y);
-	}
-	if (m_player.m_position.y == screenSize::s_height)
-	{
-		m_player.m_player.setPosition(m_player.m_position.x, m_player.m_position.y - 1);
-	}
-
 	world.update();
 
 	m_player.move(m_controller);
