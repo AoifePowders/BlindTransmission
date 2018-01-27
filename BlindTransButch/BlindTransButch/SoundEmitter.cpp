@@ -20,6 +20,7 @@ SoundEmitter::SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t)
 	m_circle.setFillColor(sf::Color::Black);
 	m_circle.setOutlineThickness(5);
 	m_circle.setOutlineColor(sf::Color::White);
+	alive = true;
 	//a->playSingle();
 }
 bool SoundEmitter::checkCollision(sf::IntRect r)
@@ -39,6 +40,10 @@ void SoundEmitter::update()
 		m_circle.setRadius(m_radius);
 		m_circle.setOrigin(sf::Vector2f(m_radius, m_radius));
 		m_ttl--;
+	}
+	else
+	{
+		alive = false;
 	}
 }
 void SoundEmitter::render(sf::RenderWindow &w)

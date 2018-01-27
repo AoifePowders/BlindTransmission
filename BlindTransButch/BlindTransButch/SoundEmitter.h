@@ -16,6 +16,7 @@ public:
 	bool checkCollision(sf::IntRect r);
 	void update();
 	void render(sf::RenderWindow &w);
+	bool alive;
 
 private:
 	Audio m_sfx;
