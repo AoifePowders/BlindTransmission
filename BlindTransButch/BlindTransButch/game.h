@@ -1,18 +1,16 @@
-// author Peter Lowe
 #ifndef GAME
 #define GAME
 
 #include <SFML/Graphics.hpp>
+
 #include "Player.h"
+#include "Enemy.h"
 
 class Game
 {
 public:
 	Game();
 	~Game();
-	/// <summary>
-	/// main method for game
-	/// </summary>
 	void run();
 
 private:
@@ -24,12 +22,14 @@ private:
 	void setupFontAndText();
 	void setupSprite();
 
-	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
-	bool m_exitGame; // control exiting game
+	sf::RenderWindow m_window; 
+	sf::Font m_ArialBlackfont; 
+	sf::Text m_welcomeMessage; 
+	sf::Texture m_logoTexture;
+	sf::Sprite m_logoSprite; 
+	bool m_exitGame; 
+
+	Enemy m_enemy;
 
 };
 

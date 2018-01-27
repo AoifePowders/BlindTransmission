@@ -1,4 +1,3 @@
-// author Peter Lowe
 #include "Game.h"
 #include <iostream>
 
@@ -77,9 +76,10 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-	m_player.render(m_window);
 	m_window.draw(m_welcomeMessage);
 	m_window.draw(m_logoSprite);
+	m_player.render(m_window);
+	m_enemy.render(m_window);
 	m_window.display();
 }
 
