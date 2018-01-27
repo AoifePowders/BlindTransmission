@@ -13,7 +13,7 @@ public:
 	void update(sf::Vector2f t_soundPos);
 	void render(sf::RenderWindow & t_window);
 
-	bool m_isMoving;
+	bool m_isMoving{ false };
 	sf::Vector2f m_position{ 200,200 };
 	
 private:

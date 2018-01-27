@@ -8,6 +8,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Vase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
@@ -17,6 +18,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="screenSize.h" />
     <ClInclude Include="Xbox360Controller.h" />
+    <ClInclude Include="Vase.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
