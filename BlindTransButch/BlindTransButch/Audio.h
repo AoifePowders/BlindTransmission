@@ -1,6 +1,7 @@
 #ifndef _AUDIO_H_
 #define _AUDIO_H_
 #include <SFML\Audio.hpp>
+
 #include <string>
 #include <iostream>
 
@@ -10,7 +11,7 @@ public:
 	Audio();
 	~Audio();
 
-	void loadAudio(const std::string & file, int volume);
+	void loadAudio(const std::string & file, int volume, std::string t);
 	void playSingle();
 	void playLoop();
 	void setVolume(int vol);
@@ -21,11 +22,16 @@ public:
 	int getVolume();
 	bool muted = false;
 	sf::Sound m_sound;
+	std::string getTag();
+
+	void SetListener(sf::Vector3f pos, int vol);
+	void setSoundPos(sf::Vector3f pos);
 
 private:
 
 	sf::SoundBuffer s;
 	int m_volume;
+	std::string m_tag;
 };
 
 #endif;

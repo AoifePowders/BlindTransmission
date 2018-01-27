@@ -11,9 +11,10 @@ Audio::~Audio()
 {
 }
 //Adds the sound from file to the buffer.
-void Audio::loadAudio(const std::string & file, int volume)
+void Audio::loadAudio(const std::string & file, int volume, std::string t)
 {
 	std::cout << "Loading";
+	m_tag = t;
 	s.loadFromFile(file);
 	m_sound.setBuffer(s);
 	m_sound.setVolume(volume);
@@ -68,4 +69,20 @@ void Audio::unmute()
 		m_sound.setVolume(m_volume);
 		muted = false;
 	}
+}
+//identify the sound
+std::string Audio::getTag()
+{
+	return m_tag;
+}
+//Sets the listener of the scene -> player position
+void Audio::SetListener(sf::Vector3f pos, int vol)
+{
+	sf::Listener::setPosition(pos);
+	sf::Listener::setGlobalVolume(vol);
+}
+//sets the sound position - > (x, 0, y)
+void Audio::setSoundPos(sf::Vector3f pos)
+{
+	m_sound.setPosition(pos);
 }
