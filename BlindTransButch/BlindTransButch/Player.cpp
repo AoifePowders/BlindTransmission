@@ -15,9 +15,7 @@ Player::Player()
 	{
 		std::cout << "Idle not loaded" << std::endl;
 	}
-
 }
-
 
 Player::~Player()
 {

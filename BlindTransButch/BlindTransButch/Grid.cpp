@@ -22,9 +22,9 @@ void Grid::render(sf::RenderWindow &window)
 void Grid::initialise(int level)
 {
 	//Tile textures
-	std::string floorTexturePath = "ASSETS//IMAGES//floor.png";
+	std::string floorTexturePath = "ASSETS//IMAGES//floor2.png";
 	std::string wallTexturePath = "ASSETS//IMAGES//wall.png";
-	std::string exitTexturePath = "ASSETS//IMAGES//FLOOR.png";
+	std::string exitTexturePath = "ASSETS//IMAGES//floor2.png";
 	std::string tableTexturePath = "ASSETS//IMAGES//FLOOR.png";
 	std::string chairTexturePath = "ASSETS//IMAGES//FLOOR.png";
 	std::string bedTexturePath = "ASSETS//IMAGES//FLOOR.png";
