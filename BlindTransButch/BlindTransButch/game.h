@@ -13,6 +13,7 @@
 #include "screenSize.h"
 #include "Grid.h"
 #include "CollisionManager.h"
+#include "Vase.h"
 
 class Game
 {
@@ -40,7 +41,7 @@ private:
 
 	Enemy m_enemy;
 	Cat m_cat;
-
+	Vase m_vase;
 	
 	
 	Grid world;

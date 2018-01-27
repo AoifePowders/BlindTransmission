@@ -28,6 +28,7 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SoundEmitter.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vase.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="screenSize.h" />
+    <ClInclude Include="SoundEmitter.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vase.h" />
     <ClInclude Include="Xbox360Controller.h" />

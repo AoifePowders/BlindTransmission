@@ -96,6 +96,8 @@ void Game::update(sf::Time t_deltaTime)
 
 	world.update();
 
+	m_vase.update();
+
 	m_player.move(m_controller);
 	checkCollision();
 
@@ -111,6 +113,7 @@ void Game::render()
 	m_player.render(m_window);
 	m_cat.render(m_window);
 	m_enemy.render(m_window);
+	m_vase.render(m_window);
 	m_window.display();
 }
 
@@ -127,6 +130,12 @@ void Game::setupFontAndText()
 
 void Game::checkCollision()
 {
+
+	if (cManager.checkCollision(m_player.m_body, m_vase.m_body))
+	{
+		m_vase.isBroken = true;
+	}
+
 	for (int i = 0; i < world.map.size(); i++)
 	{
 		if (cManager.checkCollision(m_player.m_position, world.map.at(i)->bounds))

@@ -36,6 +36,14 @@ bool CollisionManager::checkCollision(sf::IntRect &a, sf::IntRect &b)
 	}
 	return false;
 }
+bool CollisionManager::checkCollision(sf::RectangleShape & a, sf::RectangleShape & b)
+{
+	if (b.getGlobalBounds().intersects(a.getGlobalBounds()))
+	{
+		return true;
+	}
+	return false;
+}
 bool CollisionManager::checkCollision(sf::RectangleShape &a, sf::IntRect &b)
 {
 	sf::IntRect iA(a.getGlobalBounds());

@@ -15,9 +15,10 @@ public:
 	void render(sf::RenderWindow & t_window);
 
 	bool isBroken{ false };
+	sf::RectangleShape m_body;
 
 private:
-	sf::RectangleShape m_body;
+	
 	sf::Texture m_vaseSolidTexture;
 	sf::Texture m_vaseBrokenTexture;
 };

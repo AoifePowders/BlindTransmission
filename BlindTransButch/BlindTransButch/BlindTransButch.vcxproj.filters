@@ -37,6 +37,9 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="SoundEmitter.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -73,6 +76,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEmitter.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
