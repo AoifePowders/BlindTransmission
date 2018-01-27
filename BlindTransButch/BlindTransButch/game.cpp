@@ -159,10 +159,10 @@ void Game::checkCollision()
 				}
 			}
 		}
-		if (cManager.checkCollision(m_player.m_player, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
+		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
 		{
-			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_player), cManager.asFloatRect(world.map.at(i)->bounds));
-			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_player), cManager.asFloatRect(world.map.at(i)->bounds));
+			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
+			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 
 			if (std::abs(offsetX) > std::abs(offsetY))
 			{
