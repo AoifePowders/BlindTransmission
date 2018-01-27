@@ -94,7 +94,6 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-
 	world.update();
 
 	m_player.move(m_controller);

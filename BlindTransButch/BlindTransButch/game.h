@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Audio.h"
+#include "SoundEmitter.h"
+#include <memory>
 
 #include "Player.h"
 #include "Enemy.h"
@@ -39,12 +41,12 @@ private:
 	Enemy m_enemy;
 	Cat m_cat;
 
+	
+	
 	Grid world;
-
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();
-
 
 };
 
