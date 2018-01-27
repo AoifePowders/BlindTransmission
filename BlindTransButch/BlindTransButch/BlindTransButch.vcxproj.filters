@@ -11,6 +11,7 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Xbox360Controller.h" />
+    <ClInclude Include="CollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
