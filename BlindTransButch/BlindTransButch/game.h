@@ -3,6 +3,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include "Audio.h"
 
 class Game
 {
@@ -29,6 +30,7 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
+	Audio musik;
 
 };
 

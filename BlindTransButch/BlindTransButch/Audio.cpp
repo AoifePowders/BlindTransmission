@@ -13,6 +13,7 @@ Audio::~Audio()
 //Adds the sound from file to the buffer.
 void Audio::loadAudio(const std::string & file, int volume)
 {
+	std::cout << "Loading";
 	s.loadFromFile(file);
 	m_sound.setBuffer(s);
 	m_sound.setVolume(volume);

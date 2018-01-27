@@ -2,6 +2,7 @@
 #define _AUDIO_H_
 #include <SFML\Audio.hpp>
 #include <string>
+#include <iostream>
 
 class Audio
 {
@@ -12,7 +13,6 @@ public:
 	void loadAudio(const std::string & file, int volume);
 	void playSingle();
 	void playLoop();
-	void playSingle();
 	void setVolume(int vol);
 	void changeVolume(int vol);
 	void stopPlay();
