@@ -3,6 +3,7 @@
 #include <iostream>
 
 Game::Game() :
+
 	m_window{ sf::VideoMode{ unsigned(screenSize::s_width), unsigned(screenSize::s_height), 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
@@ -10,11 +11,9 @@ Game::Game() :
 	m_player.setUp();
 }
 
-
 Game::~Game()
 {
 }
-
 
 void Game::run()
 {
@@ -75,8 +74,12 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+<<<<<<< HEAD
 		m_player.move();
 		world.update();
+=======
+	m_player.move(m_controller);
+>>>>>>> master
 }
 
 /// <summary>

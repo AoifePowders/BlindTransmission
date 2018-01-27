@@ -6,9 +6,11 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Xbox360Controller.h"
 #include "Cat.h"
 #include "screenSize.h"
 #include "Grid.h"
+
 
 class Game
 {
@@ -19,12 +21,12 @@ public:
 
 private:
 	Player m_player;
+	Xbox360Controller m_controller;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
 	
 	void setupFontAndText();
-	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
