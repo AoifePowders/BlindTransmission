@@ -21,7 +21,7 @@ Tile::Tile(sf::Vector2f position,
 	radioTexture = _radioTexture;
 	
 	m_TileSprite.setTexture(*floorTexture);
-	m_TileSprite.setOrigin(floorTexture->getSize().x / 2, floorTexture->getSize().y / 2);
+	//m_TileSprite.setOrigin(floorTexture->getSize().x / 2, floorTexture->getSize().y / 2);
 	m_TileSprite.setPosition(position.x, position.y);
 	bounds.top = position.y;
 	bounds.left = position.x;

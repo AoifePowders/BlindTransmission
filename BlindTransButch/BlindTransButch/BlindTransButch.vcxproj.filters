@@ -34,11 +34,11 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h">
-      <Filter>Src</Filter>
-    </ClInclude>
     <ClInclude Include="Cat.h">
       <Filter>Header</Filter>
     </ClInclude>
@@ -67,6 +67,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Xbox360Controller.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

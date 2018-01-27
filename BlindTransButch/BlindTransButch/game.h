@@ -10,7 +10,7 @@
 #include "Cat.h"
 #include "screenSize.h"
 #include "Grid.h"
-
+#include "CollisionManager.h"
 
 class Game
 {
@@ -40,6 +40,10 @@ private:
 	Cat m_cat;
 
 	Grid world;
+
+	int currentLevel = 1;
+	CollisionManager cManager;
+	void checkCollision();
 
 
 };
