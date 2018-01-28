@@ -21,15 +21,33 @@ Player::~Player()
 {
 }
 
-void Player::setUp()
+void Player::setUp(std::vector<std::shared_ptr<Audio>> s)
 {
 	m_body.setFillColor(sf::Color::White);
 	m_body.setPosition(m_position);
 	m_body.setSize(m_size);
+	m_sounds = s;
+	breathTimer = 0;
 }
 
 void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
 {
+	//Sound emitters
+	breathTimer--;
+	playerCalls(t_controller);
+	for (int i = 0; i < m_calls.size(); i++)
+	{
+		if (m_calls.at(i)->alive)
+		{
+			m_calls.at(i)->update();
+		}
+		else
+		{
+			delete m_calls.at(i);
+			m_calls.erase(m_calls.begin() + i);
+		}
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || t_controller.m_currentState.RB)
 	{
 		m_speed = 1.5;
@@ -130,6 +148,39 @@ void Player::move(Xbox360Controller &t_controller)
 
 void Player::render(sf::RenderWindow & t_window)
 {
+	for (int i = 0; i < m_calls.size(); i++)
+	{
+		m_calls.at(i)->render(t_window);
+	}
 	t_window.draw(m_body);
 }
-
+void Player::playerCalls(Xbox360Controller &t_controller)
+{
+	if (breathTimer < 0)
+	{
+		//Low scan
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || t_controller.m_currentState.B)
+		{
+			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(0), 10, sf::Color::White));
+			breathTimer = 100;
+		}
+		//high Scan
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || t_controller.m_currentState.A)
+		{
+			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(1), 15, sf::Color::Magenta));
+			breathTimer = 200;
+		}
+		//Low Cat
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || t_controller.m_currentState.X)
+		{
+			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(2), 10, sf::Color::Green));
+			breathTimer = 100;
+		}
+		//High cat
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || t_controller.m_currentState.Y)
+		{
+			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(3), 15, sf::Color::Cyan));
+			breathTimer = 200;
+		}
+	}
+}

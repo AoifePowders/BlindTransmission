@@ -9,7 +9,7 @@ SoundEmitter::SoundEmitter()
 SoundEmitter::~SoundEmitter()
 {
 }
-SoundEmitter::SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t)
+SoundEmitter::SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t, sf::Color c)
 {
 	m_ttl = t;
 	m_pos = p;
@@ -17,9 +17,9 @@ SoundEmitter::SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t)
 	m_circle.setPosition(p);
 	m_radius = 0;
 	m_circle.setRadius(0);
-	m_circle.setFillColor(sf::Color::Black);
+	m_circle.setFillColor(sf::Color::Transparent);
 	m_circle.setOutlineThickness(5);
-	m_circle.setOutlineColor(sf::Color::White);
+	m_circle.setOutlineColor(c);
 	alive = true;
 	//a->playSingle();
 }

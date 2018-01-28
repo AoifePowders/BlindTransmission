@@ -54,7 +54,7 @@ void Cat::render(sf::RenderWindow & w)
 }
 void Cat::meow()
 {
-	m_mews.push_back(new SoundEmitter(sf::Vector2f(m_sprite.getPosition().x + (m_sprite.getGlobalBounds().width / 2), m_sprite.getPosition().y + (m_sprite.getGlobalBounds().height / 2)), m_sound, 10));
+	m_mews.push_back(new SoundEmitter(sf::Vector2f(m_sprite.getPosition().x + (m_sprite.getGlobalBounds().width / 2), m_sprite.getPosition().y + (m_sprite.getGlobalBounds().height / 2)), m_sound, 10, sf::Color::Yellow));
 }
 sf::IntRect Cat::getRect()
 {
