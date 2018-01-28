@@ -53,6 +53,15 @@ bool CollisionManager::checkCollision(sf::RectangleShape &a, sf::IntRect &b)
 	}
 	return false;
 }
+bool CollisionManager::checkCollision(sf::RectangleShape &a, sf::FloatRect &b)
+{
+	sf::IntRect iA(a.getGlobalBounds());
+	if (iA.intersects(asIntRect(b)))
+	{
+		return true;
+	}
+	return false;
+}
 float CollisionManager::getHorizontalIntersectionDepth(sf::FloatRect &a, sf::FloatRect &b)
 {
 	float halfWidthA = a.width / 2;
@@ -104,6 +113,10 @@ float CollisionManager::getVerticalIntersectionDepth(sf::FloatRect &a, sf::Float
 sf::FloatRect CollisionManager::asFloatRect(sf::IntRect &rect)
 {
 	return sf::FloatRect(rect.left, rect.top, rect.width, rect.height);
+}
+sf::IntRect CollisionManager::asIntRect(sf::FloatRect &rect)
+{
+	return sf::IntRect(rect.left, rect.top, rect.width, rect.height);
 }
 sf::FloatRect CollisionManager::asFloatRect(sf::RectangleShape &rect)
 {

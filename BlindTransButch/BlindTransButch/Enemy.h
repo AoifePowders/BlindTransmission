@@ -21,9 +21,11 @@ public:
 
 	sf::Vector2f m_target{ 0,0 };
 	sf::Vector2f m_position{ 0,0 };
+
+	sf::RectangleShape m_body;
+
 	
 private:
-	sf::RectangleShape m_body;
 	sf::Texture m_knucklesTexture;
 
 	
