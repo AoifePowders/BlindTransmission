@@ -124,6 +124,10 @@ void Game::update(sf::Time t_deltaTime)
 		world.update();
 		m_player.move(m_controller);
 		checkCollision();
+		if (currentLevel == 6)
+		{
+			m_currentState = GameState::WIN;
+		}
 		break;
 	case GameState::WIN:
 		if (m_winScreen.m_switchStart == true)
@@ -140,10 +144,6 @@ void Game::update(sf::Time t_deltaTime)
 		m_loseScreen.update();
 		break;
 	case GameState::CREDITS:
-		if (m_creditsScreen.m_switchStart == true)
-		{
-			m_currentState = GameState::WIN;
-		}
 		m_creditsScreen.update();
 		break;
 	}
@@ -287,6 +287,9 @@ void Game::loadLevel(int levelnum)
 	case 5:
 		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
 		world.initialise(5);
+		break;
+	case 6:
+		m_currentState = GameState::WIN;
 		break;
 	default:
 		break;
