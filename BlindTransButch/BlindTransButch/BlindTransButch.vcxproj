@@ -31,6 +31,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Radio.cpp" />
+    <ClCompile Include="SoundEmitter.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vase.cpp" />
     <ClCompile Include="Win.cpp" />
@@ -48,15 +50,21 @@
     <ClInclude Include="Lose.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Radio.h" />
     <ClInclude Include="screenSize.h" />
+    <ClInclude Include="SoundEmitter.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vase.h" />
     <ClInclude Include="Win.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />
+    <Image Include="ASSETS\IMAGES\floor.png" />
     <Image Include="ASSETS\IMAGES\Knuckles.png" />
+    <Image Include="ASSETS\IMAGES\Player Walk1.png" />
+    <Image Include="ASSETS\IMAGES\Player Walk2.png" />
+    <Image Include="ASSETS\IMAGES\Player.png" />
+    <Image Include="ASSETS\IMAGES\wall.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="ASSETS\FONTS\ariblk.ttf" />

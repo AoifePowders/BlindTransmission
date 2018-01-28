@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Audio.h"
+#include "SoundEmitter.h"
+#include <memory>
 
 #include "Player.h"
 #include "Enemy.h"
@@ -11,6 +13,7 @@
 #include "screenSize.h"
 #include "Grid.h"
 #include "CollisionManager.h"
+#include "Vase.h"
 #include "MainMenu.h"
 #include "Win.h"
 #include "Lose.h"
@@ -47,7 +50,10 @@ private:
 	Audio musik;
 
 	Enemy m_enemy;
-	Cat m_cat;
+	Vase m_vase;
+	
+	Cat m_cats[5];
+	
 	MainMenu m_mainMenuScreen;
 	Grid world;
 	Win m_winScreen;
@@ -57,6 +63,10 @@ private:
 	CollisionManager cManager;
 	void checkCollision();
 
+	void loadLevel(int levelnum);
+
+	std::vector<std::shared_ptr<Audio>> playerSounds;
+	std::shared_ptr<Audio> a;
 
 };
 

@@ -8,7 +8,7 @@ Tile::Tile(sf::Vector2f position,
 	std::shared_ptr<sf::Texture> _tableTexture,
 	std::shared_ptr<sf::Texture> _chairTexture,
 	std::shared_ptr<sf::Texture> _bedTexture,
-	std::shared_ptr<sf::Texture> _radioTexture,
+	std::shared_ptr<sf::Texture> _entranceTexture,
 	int const size = 86) :
 	m_position(position), m_size(size, size)
 {
@@ -18,7 +18,7 @@ Tile::Tile(sf::Vector2f position,
 	chairTexture = _chairTexture;
 	tableTexture = _tableTexture;
 	bedTexture = _bedTexture;
-	radioTexture = _radioTexture;
+	entranceTexture = _entranceTexture;
 	
 	m_TileSprite.setTexture(*floorTexture);
 	//m_TileSprite.setOrigin(floorTexture->getSize().x / 2, floorTexture->getSize().y / 2);
@@ -43,8 +43,8 @@ void Tile::setType(Tile::TileType newType)
 	bounds.height = 86;
 	switch (newType)
 	{
-	case Tile::RADIO:
-		m_TileSprite.setTexture(*radioTexture);
+	case Tile::ENTRANCE:
+		m_TileSprite.setTexture(*entranceTexture);
 		break;
 	case Tile::BED:
 		m_TileSprite.setTexture(*bedTexture);

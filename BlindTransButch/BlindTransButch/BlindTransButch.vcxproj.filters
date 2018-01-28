@@ -37,10 +37,20 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="SoundEmitter.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Radio.cpp" />
+=======
     <ClCompile Include="MainMenu.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Win.cpp" />
     <ClCompile Include="Lose.cpp" />
     <ClCompile Include="Credits.cpp" />
+=======
+>>>>>>> Aoifesbranch
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -79,16 +89,38 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Header</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="SoundEmitter.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Radio.h" />
+=======
     <ClInclude Include="MainMenu.h" />
+<<<<<<< HEAD
     <ClInclude Include="Win.h" />
     <ClInclude Include="Lose.h" />
     <ClInclude Include="Credits.h" />
+=======
+>>>>>>> Aoifesbranch
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png">
+    <Image Include="ASSETS\IMAGES\Knuckles.png">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="ASSETS\IMAGES\Knuckles.png">
+    <Image Include="ASSETS\IMAGES\floor.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\wall.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\Player Walk1.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\Player Walk2.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="ASSETS\IMAGES\Player.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>

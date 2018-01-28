@@ -36,13 +36,13 @@ public:
 	void render(sf::RenderWindow &window);
 
 	int startTilePos;
-	std::string floorTexturePath = "ASSETS//IMAGES//FLOOR.png";
+	std::string floorTexturePath = "ASSETS//IMAGES//floor2.png";
 	std::string wallTexturePath ;
 	std::string exitTexturePath;
 	std::string tableTexturePath;
 	std::string chairTexturePath;
 	std::string bedTexturePath;
-	std::string radioTexturePath;
+	std::string entranceTexturePath;
 
 	std::vector<std::shared_ptr<Tile>> map;
 	int tCount = 0;

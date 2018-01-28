@@ -22,13 +22,13 @@ void Grid::render(sf::RenderWindow &window)
 void Grid::initialise(int level)
 {
 	//Tile textures
-	std::string floorTexturePath = "ASSETS//IMAGES//floor.png";
-	std::string wallTexturePath = "ASSETS//IMAGES//wall.png";
-	std::string exitTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string tableTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string chairTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string bedTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string radioTexturePath = "ASSETS//IMAGES//FLOOR.png";
+	std::string floorTexturePath = "ASSETS//IMAGES//floor2.png";
+	std::string wallTexturePath = "ASSETS//IMAGES//wall3.png";
+	std::string exitTexturePath = "ASSETS//IMAGES//exit.png";
+	std::string tableTexturePath = "ASSETS//IMAGES//table.png";
+	std::string chairTexturePath = "ASSETS//IMAGES//chair.png";
+	std::string bedTexturePath = "ASSETS//IMAGES//bed.png";
+	std::string entranceTexturePath = "ASSETS//IMAGES//entrance.png";
 	//Load the level grid from a text file
 	switch (level)
 	{
@@ -63,8 +63,8 @@ void Grid::initialise(int level)
 	if (!chairTexture.loadFromFile(chairTexturePath)) { std::cout << chairTexturePath << std::endl; }
 	sf::Texture bedTexture;
 	if (!bedTexture.loadFromFile(bedTexturePath)) { std::cout << bedTexturePath << std::endl; }
-	sf::Texture radioTexture;
-	if (!radioTexture.loadFromFile(radioTexturePath)) { std::cout << radioTexturePath << std::endl; }
+	sf::Texture entranceTexture;
+	if (!entranceTexture.loadFromFile(entranceTexturePath)) { std::cout << entranceTexturePath << std::endl; }
 
 	m_width = 14;
 	m_height = 8;
@@ -75,7 +75,7 @@ void Grid::initialise(int level)
 		std::make_shared<sf::Texture>(tableTexture),
 		std::make_shared<sf::Texture>(chairTexture),
 		std::make_shared<sf::Texture>(bedTexture),
-		std::make_shared<sf::Texture>(radioTexture),
+		std::make_shared<sf::Texture>(entranceTexture),
 		86);
 	tCount = 0;
 	map.clear();
@@ -83,7 +83,7 @@ void Grid::initialise(int level)
 	{
 		for (int x = 0; x < m_width; x++)
 		{//set tiles into grid
-			tempTile.updatePosition(sf::Vector2f(43 + x * 86,43 + y * 86));
+			tempTile.updatePosition(sf::Vector2f( + x * 86, + y * 86));
 			switch (lLoader.level[y][x])
 			{
 			case 1:
@@ -102,7 +102,7 @@ void Grid::initialise(int level)
 				tempTile.setType(Tile::BED);
 				break;
 			case 6:
-				tempTile.setType(Tile::RADIO);
+				tempTile.setType(Tile::ENTRANCE);
 				break;
 			default:
 				tempTile.setType(Tile::DEFAULT);

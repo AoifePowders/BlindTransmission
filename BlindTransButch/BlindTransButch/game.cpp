@@ -10,7 +10,11 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	m_player.setUp();
+	for (int i = 0; i < 4; i++)
+	{
+		playerSounds.push_back(a);
+	}
+	m_player.setUp(playerSounds);
 	m_controller.connect();
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 	m_winScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
@@ -29,7 +33,7 @@ void Game::run()
 
 
 	//Initialise
-	world.initialise(1);
+	loadLevel(1);
 
 
          
@@ -106,7 +110,7 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::MAINMENU:
 		m_mainMenuScreen.update(t_deltaTime);
 		m_mainMenuScreen.keyIsPressed(m_controller);
-		if (m_mainMenuScreen.m_switchStart)
+		if (m_mainMenuScreen.m_switchStart || sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			m_currentState = GameState::PLAYING;
 			m_mainMenuScreen.m_switchStart = false;
@@ -137,6 +141,21 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 	}
 
+	for (int i = 0; i < 5; i++)
+	{
+		if (m_cats[i].catAlive)
+		{
+			m_cats[i].update();
+		}
+	}
+
+	world.update();
+
+	m_vase.update();
+
+	m_player.move(m_controller);
+	checkCollision();
+
 }
 
 /// <summary>
@@ -152,8 +171,12 @@ void Game::render()
 		break;
 	case GameState::PLAYING:
 		world.render(m_window);
+		m_vase.render(m_window);
+		for (int i = 0; i < 5; i++)
+		{
+			m_cats[i].render(m_window);
+		}
 		m_player.render(m_window);
-		m_cat.render(m_window);
 		m_enemy.render(m_window);
 		break;
 	case GameState::WIN:
@@ -184,6 +207,12 @@ void Game::setupFontAndText()
 
 void Game::checkCollision()
 {
+
+	if (cManager.checkCollision(m_player.m_body, m_vase.m_body))
+	{
+		m_vase.isBroken = true;
+	}
+
 	for (int i = 0; i < world.map.size(); i++)
 	{
 		if (cManager.checkCollision(m_player.m_position, world.map.at(i)->bounds))
@@ -192,33 +221,24 @@ void Game::checkCollision()
 			{
 				//EXIT, LOAD NEXT LEVEL
 				currentLevel++;
-				switch (currentLevel)
-				{
-				case 2:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(2);
-					break;
-				case 3:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(3);
-					break;
-				case 4:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(4);
-					break;
-				case 5:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(5);
-					break;
-				default:
-					break;
-				}
+				loadLevel(currentLevel);
 			}
 		}
-		if (cManager.checkCollision(m_player.m_player, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
+
+		for (int i = 0; i < 5; i++)
+
+		if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 		{
-			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_player), cManager.asFloatRect(world.map.at(i)->bounds));
-			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_player), cManager.asFloatRect(world.map.at(i)->bounds));
+			if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
+			{
+				m_cats[i].catAlive = false;
+			}
+		}
+
+if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
+		{
+			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
+			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 
 			if (std::abs(offsetX) > std::abs(offsetY))
 			{
@@ -230,5 +250,33 @@ void Game::checkCollision()
 			}
 		}
 		
+	}
+}
+void Game::loadLevel(int levelnum)
+{
+	switch (currentLevel)
+	{
+	case 1:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(1);
+		break;
+	case 2:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(2);
+		break;
+	case 3:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(3);
+		break;
+	case 4:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(4);
+		break;
+	case 5:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(5);
+		break;
+	default:
+		break;
 	}
 }
