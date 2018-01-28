@@ -14,6 +14,15 @@
 #include "Grid.h"
 #include "CollisionManager.h"
 #include "Vase.h"
+#include "MainMenu.h"
+
+enum class GameState
+{
+	MAINMENU,
+	PLAYING,
+	WIN,
+	LOSE
+};
 
 class Game
 {
@@ -22,20 +31,19 @@ public:
 	~Game();
 	void run();
 
+	static GameState m_currentState;
+
 private:
 	Player m_player;
 	Xbox360Controller m_controller;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
-	
 	void setupFontAndText();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
+	sf::Texture m_knucklesTexture;
 	bool m_exitGame; // control exiting game
 	Audio musik;
 
@@ -44,6 +52,7 @@ private:
 	Vase m_vase;
 	
 	
+	MainMenu m_mainMenuScreen;
 	Grid world;
 	int currentLevel = 1;
 	CollisionManager cManager;

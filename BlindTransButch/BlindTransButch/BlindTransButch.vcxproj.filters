@@ -37,10 +37,14 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="SoundEmitter.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Radio.cpp" />
+=======
+    <ClCompile Include="MainMenu.cpp" />
+>>>>>>> Aoifesbranch
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -79,10 +83,14 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Header</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="SoundEmitter.h">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Radio.h" />
+=======
+    <ClInclude Include="MainMenu.h" />
+>>>>>>> Aoifesbranch
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\Knuckles.png">
