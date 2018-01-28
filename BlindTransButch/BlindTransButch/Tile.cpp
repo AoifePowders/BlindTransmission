@@ -43,7 +43,7 @@ void Tile::setType(Tile::TileType newType)
 	bounds.height = 86;
 	switch (newType)
 	{
-	case Tile::RADIO:
+	case Tile::ENTRANCE:
 		m_TileSprite.setTexture(*entranceTexture);
 		break;
 	case Tile::BED:

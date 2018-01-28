@@ -24,7 +24,7 @@ void Grid::initialise(int level)
 	//Tile textures
 	std::string floorTexturePath = "ASSETS//IMAGES//floor2.png";
 	std::string wallTexturePath = "ASSETS//IMAGES//wall3.png";
-	std::string exitTexturePath = "ASSETS//IMAGES//floor2.png";
+	std::string exitTexturePath = "ASSETS//IMAGES//exit.png";
 	std::string tableTexturePath = "ASSETS//IMAGES//table.png";
 	std::string chairTexturePath = "ASSETS//IMAGES//chair.png";
 	std::string bedTexturePath = "ASSETS//IMAGES//bed.png";
@@ -83,7 +83,7 @@ void Grid::initialise(int level)
 	{
 		for (int x = 0; x < m_width; x++)
 		{//set tiles into grid
-			tempTile.updatePosition(sf::Vector2f(43 + x * 86,43 + y * 86));
+			tempTile.updatePosition(sf::Vector2f( + x * 86, + y * 86));
 			switch (lLoader.level[y][x])
 			{
 			case 1:
