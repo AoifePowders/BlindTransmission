@@ -4,7 +4,6 @@
 
 Cat::Cat()
 {
-	
 }
 Cat::~Cat()
 {
@@ -48,7 +47,10 @@ void Cat::render(sf::RenderWindow & w)
 		m_mews.at(i)->render(w);
 
 	}
-	w.draw(m_sprite);
+	if (catAlive)
+	{
+		w.draw(m_sprite);
+	}
 }
 void Cat::meow()
 {
