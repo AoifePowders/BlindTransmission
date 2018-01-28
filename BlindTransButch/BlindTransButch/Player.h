@@ -39,6 +39,7 @@ public:
 	sf::Texture m_walk2Texture;
 	
 	PlayerAnimation m_currentAnimation{ PlayerAnimation::Idle };
+	bool checkSoundCollision(sf::IntRect &a);
 
 private:
 
@@ -52,7 +53,6 @@ private:
 	// 4. panting
 	std::vector<std::shared_ptr<Audio>> m_sounds;
 	void playerCalls(Xbox360Controller &t_controller);
-
 	int m_breathTimer;
 	bool outOfBreath;
 	bool breathSound;

@@ -241,6 +241,7 @@ void Game::setupFontAndText()
 
 void Game::checkCollision()
 {
+	
 	for (int i = 0; i < m_cats.size(); i++)
 	{
 		if (cManager.checkCollision(m_player.m_body, m_cats.at(i).m_sprite.getGlobalBounds()))
@@ -256,6 +257,12 @@ void Game::checkCollision()
 
 	for (int i = 0; i < world.map.size(); i++)
 	{
+		if (m_player.checkSoundCollision(world.map.at(i)->bounds))
+		{
+			world.map.at(i)->m_TileSprite.setColor(sf::Color(world.map.at(i)->m_TileSprite.getColor().r, world.map.at(i)->m_TileSprite.getColor().g,
+				world.map.at(i)->m_TileSprite.getColor().b, 255));
+
+		}
 		if (cManager.checkCollision(m_player.m_position, world.map.at(i)->bounds))
 		{
 			if (world.map.at(i)->tileType == Tile::EXIT)

@@ -179,6 +179,20 @@ void Player::render(sf::RenderWindow & t_window)
 	}
 	t_window.draw(m_body);
 }
+bool Player::checkSoundCollision(sf::IntRect &a)
+{
+	for (int i = 0; i < m_calls.size(); i++)
+	{
+		if (m_calls.at(i)->alive)
+		{
+			if (m_calls.at(i)->checkCollision(a))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
 void Player::playerCalls(Xbox360Controller &t_controller)
 {
 
