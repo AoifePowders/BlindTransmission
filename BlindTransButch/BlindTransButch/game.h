@@ -16,12 +16,18 @@
 #include "Vase.h"
 #include "MainMenu.h"
 
+#include "Radio.h"
+#include "Win.h"
+#include "Lose.h"
+#include "Credits.h"
+
 enum class GameState
 {
 	MAINMENU,
 	PLAYING,
 	WIN,
-	LOSE
+	LOSE,
+	CREDITS
 };
 
 class Game
@@ -52,8 +58,14 @@ private:
 	
 	std::vector<Cat> m_cats;
 	
+	Radio m_radio;
+
+	Credits m_creditsScreen;
 	MainMenu m_mainMenuScreen;
 	Grid world;
+	Win m_winScreen;
+	Lose m_loseScreen;
+
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();
