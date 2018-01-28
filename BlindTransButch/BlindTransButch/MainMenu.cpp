@@ -25,7 +25,7 @@ void MainMenu::setUp(sf::Font & t_font, sf::Texture &t_texture)
 		m_buttonText[i].setString(Text[i]);
 		m_buttonText[i].setFillColor(sf::Color::White);
 		m_buttonText[i].setCharacterSize(24);
-		m_buttonText[i].setPosition(1000, (i * 100) + 500);
+		m_buttonText[i].setPosition(990 , (i * 100) + 495);
 	}
 
 	m_background.setSize(sf::Vector2f(464, 464));
@@ -59,7 +59,11 @@ void MainMenu::keyIsPressed(Xbox360Controller & t_controller)
 	if (m_currentButton == 0)
 	{
 		m_button[0].setFillColor(sf::Color(11,6,92,255));
+		m_button[0].setOutlineColor(sf::Color::White);
+		m_button[0].setOutlineThickness(5);
+
 		m_button[1].setFillColor(sf::Color(92, 6, 6, 255));
+		m_button[1].setOutlineThickness(0);
 		m_lastButton = 0;
 		if (t_controller.m_currentState.A)
 		{
@@ -70,6 +74,10 @@ void MainMenu::keyIsPressed(Xbox360Controller & t_controller)
 	if (m_currentButton == 1)
 	{
 		m_button[0].setFillColor(sf::Color(92, 6, 6, 255));
+		m_button[0].setOutlineThickness(0);
+
+		m_button[1].setOutlineColor(sf::Color::White);
+		m_button[1].setOutlineThickness(5);
 		m_button[1].setFillColor(sf::Color(11, 6, 92, 255));
 		m_lastButton = 1;
 		if (t_controller.m_currentState.A)
