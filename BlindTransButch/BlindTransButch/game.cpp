@@ -12,7 +12,7 @@ Game::Game() :
 	setupFontAndText(); // load font 
 	m_player.setUp();
 	m_controller.connect();
-	m_mainMenuScreen.setUp(m_ArialBlackfont);
+	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 }
 
 Game::~Game()
@@ -104,7 +104,7 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::MAINMENU:
 		m_mainMenuScreen.update(t_deltaTime);
 		m_mainMenuScreen.keyIsPressed(m_controller);
-		if (m_mainMenuScreen.m_switchStart == true)
+		if (m_mainMenuScreen.m_switchStart)
 		{
 			m_currentState = GameState::PLAYING;
 			m_mainMenuScreen.m_switchStart = false;
@@ -152,6 +152,11 @@ void Game::setupFontAndText()
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
+	}
+
+	if (!m_knucklesTexture.loadFromFile("ASSETS\\IMAGES\\Knuckles.png"))
+	{
+		std::cout << "Knuckles not loaded" << std::endl;
 	}
 }
 

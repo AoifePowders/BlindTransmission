@@ -9,7 +9,7 @@ public:
 	MainMenu();
 	~MainMenu();
 
-	void setUp(sf::Font &t_font);
+	void setUp(sf::Font &t_font, sf::Texture &t_texture);
 	void render(sf::RenderWindow &t_window);
 	void keyIsPressed(Xbox360Controller &t_controller);
 	void update(sf::Time &t_dtime);
@@ -21,9 +21,10 @@ private:
 	static const int m_buttonNumber = 2;
 	sf::RectangleShape m_button[m_buttonNumber];
 	sf::Text m_buttonText[m_buttonNumber];
+	sf::RectangleShape m_background;
 
 	bool m_moved = false;
-	bool m_currentButton = 0;
+	int m_currentButton = 0;
 	bool m_lastButton = 0;
 	
 	bool m_keyPressedStart;

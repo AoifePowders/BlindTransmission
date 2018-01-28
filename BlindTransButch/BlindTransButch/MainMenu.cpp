@@ -11,12 +11,12 @@ MainMenu::~MainMenu()
 {
 }
 
-void MainMenu::setUp(sf::Font & t_font)
+void MainMenu::setUp(sf::Font & t_font, sf::Texture &t_texture)
 {
 	sf::String Text[] = { "Start", "Exit" };
 	for (int i = 0; i < m_buttonNumber; i++)
 	{
-		m_button[i].setFillColor(sf::Color(92,6,6,255));
+		m_button[i].setFillColor(sf::Color(92, 6, 6, 255));
 		m_button[i].setPosition(1000,(i * 100) + 510);
 		m_button[i].setSize(sf::Vector2f{ 200,50 });
 		m_button[i].setOrigin(25, 25);
@@ -27,10 +27,16 @@ void MainMenu::setUp(sf::Font & t_font)
 		m_buttonText[i].setCharacterSize(24);
 		m_buttonText[i].setPosition(1000, (i * 100) + 500);
 	}
+
+	m_background.setSize(sf::Vector2f(464, 464));
+	m_background.setPosition(150, 100);
+	m_background.setTexture(&t_texture);
+	m_background.setFillColor(sf::Color(255, 255, 255, 25));
 }
 
 void MainMenu::render(sf::RenderWindow & t_window)
 {
+	t_window.draw(m_background);
 	for (int i = 0; i < m_buttonNumber; i++)
 	{
 		t_window.draw(m_button[i]);
@@ -40,53 +46,39 @@ void MainMenu::render(sf::RenderWindow & t_window)
 
 void MainMenu::keyIsPressed(Xbox360Controller & t_controller)
 {
-	if (m_moved == false)
+	if (t_controller.m_currentState.DpadUp)
 	{
-		if (t_controller.m_currentState.LeftThumbStick.y >= -10)
-		{
-			m_currentButton += 1;
-			m_moved = true;
-		}
+		m_currentButton -= 1;
+	}
 
-		if (t_controller.m_currentState.LeftThumbStick.y <= 10)
+	if (t_controller.m_currentState.DpadDown)
+	{
+		m_currentButton += 1;
+	}
+
+	if (m_currentButton == 0)
+	{
+		m_button[0].setFillColor(sf::Color(11,6,92,255));
+		m_button[1].setFillColor(sf::Color(92, 6, 6, 255));
+		m_lastButton = 0;
+		if (t_controller.m_currentState.A)
 		{
-			m_currentButton -= 1;
-			m_moved = true;
+			m_keyPressedStart = true;
 		}
 	}
 
-	if (t_controller.m_currentState.LeftThumbStick.y > 10 && t_controller.m_currentState.LeftThumbStick.y < 50 ||
-		t_controller.m_currentState.LeftThumbStick.y < 10 && t_controller.m_currentState.LeftThumbStick.y > -50)
+	if (m_currentButton == 1)
 	{
-		m_moved = false;
-	}
-
-	if (m_moved == true)
-	{
-		if (m_currentButton == 0)
+		m_button[0].setFillColor(sf::Color(92, 6, 6, 255));
+		m_button[1].setFillColor(sf::Color(11, 6, 92, 255));
+		m_lastButton = 1;
+		if (t_controller.m_currentState.A)
 		{
-			m_button[0].setFillColor(sf::Color(11,6,92,255));
-			m_button[1].setFillColor(sf::Color(92, 6, 6, 255));
-			m_lastButton = 0;
-			if (t_controller.m_currentState.A)
-			{
-				m_keyPressedStart = true;
-			}
-		}
-
-		if (m_currentButton == 1)
-		{
-			m_button[0].setFillColor(sf::Color(92, 6, 6, 255));
-			m_button[1].setFillColor(sf::Color(11, 6, 92, 255));
-			m_lastButton = 1;
-			if (t_controller.m_currentState.A)
-			{
-				m_keyPressedExit = true;
-			}
+			m_keyPressedExit = true;
 		}
 	}
 
-	if (m_currentButton > 0 || m_currentButton < 2)
+	if (m_currentButton > 1 || m_currentButton < 0)
 	{
 		m_currentButton = m_lastButton;
 	}
@@ -98,7 +90,6 @@ void MainMenu::update(sf::Time & t_dtime)
 	{
 		m_switchStart = true;
 	}
-	m_switchStart = false;
 
 	if (m_keyPressedExit == true)
 	{
