@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <iostream>
 
-GameState Game::m_currentState = GameState::CREDITS;
+GameState Game::m_currentState = GameState::MAINMENU;
 
 Game::Game() :
 
