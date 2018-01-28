@@ -169,7 +169,7 @@ void Game::checkCollision()
 		}
 		if (cManager.checkCollision(m_player.m_body, m_cat.getRect()))
 		{
-			m_cat.isAlive = false;	
+			m_cat.catAlive = false;	
 		}
 
 		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
