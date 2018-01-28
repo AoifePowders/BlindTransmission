@@ -18,6 +18,32 @@ Game::Game() :
 	m_player.setUp(playerSounds);
 	m_controller.connect();
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+
+	Cat tina;
+	tina.catAlive = false;
+	m_cats.push_back(tina);
+
+	Cat fred;
+	fred.catAlive = false;
+	m_cats.push_back(fred);
+
+	Cat kaplan;
+	kaplan.catAlive = false;
+	m_cats.push_back(kaplan);
+
+	Cat harold;
+	harold.catAlive = false;
+	m_cats.push_back(harold);
+
+	Cat geoffrey;
+	geoffrey.catAlive = false;
+	m_cats.push_back(geoffrey);
+
+	m_cats.at(0).setup(sf::Vector2f(), "ASSETS//IMAGES//Tina.png", catMeows.at(0));
+	m_cats.at(1).setup(sf::Vector2f(), "ASSETS//IMAGES//Fred.png", catMeows.at(1));
+	m_cats.at(2).setup(sf::Vector2f(), "ASSETS//IMAGES//Kaplan.png", catMeows.at(2));
+	m_cats.at(3).setup(sf::Vector2f(), "ASSETS//IMAGES//Harold.png", catMeows.at(3));
+	m_cats.at(4).setup(sf::Vector2f(), "ASSETS//IMAGES//Geoffrey.png", catMeows.at(4));
 }
 
 Game::~Game()
@@ -125,16 +151,12 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 	}
 
-	for (int i = 0; i < 5; i++)
-	{
-		if (m_cats[i].catAlive)
-		{
-			m_cats[i].update();
-		}
-	}
 
 	world.update();
-
+	for (int i = 0; i < m_cats.size(); i++)
+	{
+		m_cats.at(i).update();
+	}
 	m_vase.update();
 
 	m_player.move(m_controller);
@@ -158,7 +180,7 @@ void Game::render()
 		m_vase.render(m_window);
 		for (int i = 0; i < 5; i++)
 		{
-			m_cats[i].render(m_window);
+			m_cats.at(i).render(m_window);
 		}
 		m_player.render(m_window);
 		m_enemy.render(m_window);
@@ -185,7 +207,14 @@ void Game::setupFontAndText()
 
 void Game::checkCollision()
 {
-
+	for (int i = 0; i < m_cats.size(); i++)
+	{
+		if (cManager.checkCollision(m_player.m_body, m_cats.at(i).m_sprite.getGlobalBounds()))
+		{
+			m_cats.at(i).catAlive = false;
+			doorLocked = false;
+		}
+	}
 	if (cManager.checkCollision(m_player.m_body, m_vase.m_body))
 	{
 		m_vase.isBroken = true;
@@ -197,10 +226,28 @@ void Game::checkCollision()
 		{
 			if (world.map.at(i)->tileType == Tile::EXIT)
 			{
-				//EXIT, LOAD NEXT LEVEL
-				currentLevel++;
-				loadLevel(currentLevel);
+				if (!doorLocked)
+				{
+					//EXIT, LOAD NEXT LEVEL
+					currentLevel++;
+					loadLevel(currentLevel);
+				}
+				else
+				{
+					float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
+					float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
+
+					if (std::abs(offsetX) > std::abs(offsetY))
+					{
+						m_player.m_position.y += offsetY;
+					}
+					else
+					{
+						m_player.m_position.x += offsetX;
+					}
+				}
 			}
+			
 		}
 
 		for (int i = 0; i < 5; i++)
@@ -239,26 +286,41 @@ void Game::loadLevel(int levelnum)
 		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
 		world.initialise(1);
 		m_vase.isBroken = false;
+		m_cats.at(0).catAlive = true;
+		m_cats.at(0).m_position = sf::Vector2f(9 * 86, 86 * 5);
+		doorLocked = true;
 		break;
 	case 2:
 		m_player.m_position = sf::Vector2f(86 * 12, 86 * 6);
 		world.initialise(2);
 		m_vase.isBroken = false;
+		m_cats.at(1).catAlive = true;
+		m_cats.at(1).m_position = sf::Vector2f(6 * 86, 86 * 1);
+		doorLocked = true;
 		break;
 	case 3:
 		m_player.m_position = sf::Vector2f(86 * 12, 86 * 4);
 		world.initialise(3);
 		m_vase.isBroken = false;
+		m_cats.at(2).catAlive = true;
+		m_cats.at(2).m_position = sf::Vector2f(1 * 86, 86 * 5);
+		doorLocked = true;
 		break;
 	case 4:
 		m_player.m_position = sf::Vector2f(86 * 6, 86 * 6);
 		world.initialise(4);
 		m_vase.isBroken = false;
+		m_cats.at(3).catAlive = true;
+		m_cats.at(3).m_position = sf::Vector2f(10 * 86, 86 * 6);
+		doorLocked = true;
 		break;
 	case 5:
 		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
 		world.initialise(5);
 		m_vase.isBroken = false;
+		m_cats.at(4).catAlive = true;
+		m_cats.at(4).m_position = sf::Vector2f(10 * 86, 86 * 5);
+		doorLocked = true;
 		break;
 	default:
 		break;
@@ -314,6 +376,14 @@ void Game::darken()
 	{
 		m_vase.m_body.setFillColor(sf::Color(m_vase.m_body.getFillColor().r, m_vase.m_body.getFillColor().g,
 			m_vase.m_body.getFillColor().b, m_vase.m_body.getFillColor().a - 1));
+	}
+	for (int i = 0; i < m_cats.size(); i++)
+	{
+		if (m_cats.at(i).m_sprite.getColor().a > 0)
+		{
+			m_cats.at(i).m_sprite.setColor(sf::Color(m_cats.at(i).m_sprite.getColor().r, m_cats.at(i).m_sprite.getColor().g,
+				m_cats.at(i).m_sprite.getColor().b, m_cats.at(i).m_sprite.getColor().a - 1));
+		}
 	}
 	/*if (m_player.m_body.getFillColor().a > 0)
 	{

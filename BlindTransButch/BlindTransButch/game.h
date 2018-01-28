@@ -50,7 +50,7 @@ private:
 	Enemy m_enemy;
 	Vase m_vase;
 	
-	Cat m_cats[5];
+	std::vector<Cat> m_cats;
 	
 	MainMenu m_mainMenuScreen;
 	Grid world;
@@ -65,6 +65,7 @@ private:
 	std::vector<std::shared_ptr<Audio>> enemySounds;
 	std::vector<std::shared_ptr<Audio>> playerSounds;
 	std::shared_ptr<Audio> a;
+	bool doorLocked = true;
 
 };
 
