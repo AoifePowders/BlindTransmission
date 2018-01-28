@@ -25,6 +25,7 @@ SoundEmitter::SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t, sf::
 }
 bool SoundEmitter::checkCollision(sf::IntRect r)
 {
+	
 	sf::Vector2f rCentre(r.left + r.width / 2, r.top + r.height / 2);
 	if (m_radius >= distance(m_circle.getPosition(), rCentre))
 	{
@@ -53,6 +54,5 @@ void SoundEmitter::render(sf::RenderWindow &w)
 
 double distance(sf::Vector2f v1, sf::Vector2f v2)
 {
-	double d = sqrt(((v2.x - v1.x) * (v2.x - v1.x)) + ((v2.y - v1.y) * (v2.y - v1.y)));
-	return d;
+	return sqrt(((v2.x - v1.x) * (v2.x - v1.x)) + ((v2.y - v1.y) * (v2.y - v1.y)));
 }

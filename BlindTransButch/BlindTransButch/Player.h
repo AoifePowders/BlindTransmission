@@ -40,6 +40,7 @@ public:
 	sf::Texture m_walk2Texture;
 	
 	PlayerAnimation m_currentAnimation{ PlayerAnimation::Idle };
+	bool checkSoundCollision(sf::IntRect &a);
 
 private:
 
