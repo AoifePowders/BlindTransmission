@@ -57,7 +57,6 @@ private:
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();
-
 	void loadLevel(int levelnum);
 
 	std::vector<std::shared_ptr<Audio>> playerSounds;

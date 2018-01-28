@@ -10,7 +10,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		playerSounds.push_back(a);
 	}
@@ -32,8 +32,6 @@ void Game::run()
 
 	//Initialise
 	loadLevel(1);
-
-
          
 	while (m_window.isOpen())
 	{
@@ -204,16 +202,17 @@ void Game::checkCollision()
 		}
 
 		for (int i = 0; i < 5; i++)
-
-		if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 		{
 			if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 			{
-				m_cats[i].catAlive = false;
+				if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
+				{
+					m_cats[i].catAlive = false;
+				}
 			}
 		}
 
-if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
+		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
