@@ -48,7 +48,7 @@ void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || t_controller.m_currentState.RB)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && m_currentAnimation == PlayerAnimation::Walking || t_controller.m_currentState.RB)
 	{
 		m_speed = 1.5;
 		m_breath -= 0.3;

@@ -125,6 +125,14 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 	}
 
+	for (int i = 0; i < 5; i++)
+	{
+		if (m_cats[i].catAlive)
+		{
+			m_cats[i].update();
+		}
+	}
+
 	world.update();
 
 	m_vase.update();
@@ -148,8 +156,11 @@ void Game::render()
 	case GameState::PLAYING:
 		world.render(m_window);
 		m_vase.render(m_window);
+		for (int i = 0; i < 5; i++)
+		{
+			m_cats[i].render(m_window);
+		}
 		m_player.render(m_window);
-		m_cat.render(m_window);
 		m_enemy.render(m_window);
 		break;
 	}
@@ -211,11 +222,13 @@ void Game::checkCollision()
 				}
 			}
 		}
-		if (cManager.checkCollision(m_player.m_body, m_cat.getRect()))
+		for (int i = 0; i < 5; i++)
 		{
-			m_cat.catAlive = false;	
+			if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
+			{
+				m_cats[i].catAlive = false;
+			}
 		}
-
 		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
