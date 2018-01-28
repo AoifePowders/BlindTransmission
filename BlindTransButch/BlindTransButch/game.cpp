@@ -10,6 +10,9 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	loadSounds();
+	musik.loadAudio("ASSETS//SOUNDS//themetune.wav", 50, "highScan");
+	musik.playLoop();
+
 	setupFontAndText(); // load font 
 	for (int i = 0; i < 5; i++)
 	{
@@ -253,6 +256,11 @@ void Game::checkCollision()
 	if (cManager.checkCollision(m_player.m_body, m_vase.m_body))
 	{
 		m_vase.isBroken = true;
+	}
+
+	if (cManager.checkCollision(m_player.m_body, m_enemy.m_body))
+	{
+		m_currentState = GameState::LOSE;
 	}
 
 	for (int i = 0; i < world.map.size(); i++)
