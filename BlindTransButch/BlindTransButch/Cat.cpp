@@ -39,6 +39,11 @@ void Cat::update()
 			m_mews.erase(m_mews.begin() + i);
 		}
 	}
+	if (catAlive == false)
+	{
+		m_sprite.setPosition(sf::Vector2f(-200, -200));
+	}
+
 }	
 void Cat::render(sf::RenderWindow & w)
 {

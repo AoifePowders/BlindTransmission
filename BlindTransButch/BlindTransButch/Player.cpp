@@ -30,6 +30,7 @@ void Player::setUp(std::vector<std::shared_ptr<Audio>> s)
 	m_breathTimer = 0;
 	outOfBreath = false;
 	breathSound = true;
+	m_body.setOrigin(m_body.getSize().x * .5, m_body.getSize().y * .5);
 }
 
 void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
@@ -180,6 +181,7 @@ void Player::render(sf::RenderWindow & t_window)
 }
 void Player::playerCalls(Xbox360Controller &t_controller)
 {
+
 	if (m_breathTimer < 0)
 	{
 		//Low scan

@@ -31,6 +31,7 @@ public:
 	float m_speed;
 	float m_breath = 200;
 
+
 	int frame{ 0 };
 		
 	sf::Texture m_idleTexture;
@@ -42,6 +43,7 @@ public:
 private:
 
 	std::vector<SoundEmitter*> m_calls;
+
 	//order of sound:
 	// 0. Low Scan
 	// 1. High Scan

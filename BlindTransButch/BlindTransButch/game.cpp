@@ -31,9 +31,7 @@ void Game::run()
 
 
 	//Initialise
-	world.initialise(1);
-
-
+	loadLevel(1);
          
 	while (m_window.isOpen())
 	{
@@ -108,7 +106,7 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::MAINMENU:
 		m_mainMenuScreen.update(t_deltaTime);
 		m_mainMenuScreen.keyIsPressed(m_controller);
-		if (m_mainMenuScreen.m_switchStart)
+		if (m_mainMenuScreen.m_switchStart || sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			m_currentState = GameState::PLAYING;
 			m_mainMenuScreen.m_switchStart = false;
@@ -123,6 +121,14 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.move(m_controller);
 		checkCollision();
 		break;
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (m_cats[i].catAlive)
+		{
+			m_cats[i].update();
+		}
 	}
 
 	world.update();
@@ -148,8 +154,11 @@ void Game::render()
 	case GameState::PLAYING:
 		world.render(m_window);
 		m_vase.render(m_window);
+		for (int i = 0; i < 5; i++)
+		{
+			m_cats[i].render(m_window);
+		}
 		m_player.render(m_window);
-		m_cat.render(m_window);
 		m_enemy.render(m_window);
 		break;
 	}
@@ -188,35 +197,22 @@ void Game::checkCollision()
 			{
 				//EXIT, LOAD NEXT LEVEL
 				currentLevel++;
-				switch (currentLevel)
+				loadLevel(currentLevel);
+			}
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
+			{
+				if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 				{
-				case 2:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(2);
-					break;
-				case 3:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(3);
-					break;
-				case 4:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(4);
-					break;
-				case 5:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(5);
-					break;
-				default:
-					break;
+					m_cats[i].catAlive = false;
 				}
 			}
 		}
-		if (cManager.checkCollision(m_player.m_body, m_cat.getRect()))
-		{
-			m_cat.catAlive = false;	
-		}
 
-		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
+		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
@@ -231,5 +227,33 @@ void Game::checkCollision()
 			}
 		}
 		
+	}
+}
+void Game::loadLevel(int levelnum)
+{
+	switch (currentLevel)
+	{
+	case 1:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(1);
+		break;
+	case 2:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(2);
+		break;
+	case 3:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(3);
+		break;
+	case 4:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(4);
+		break;
+	case 5:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(5);
+		break;
+	default:
+		break;
 	}
 }

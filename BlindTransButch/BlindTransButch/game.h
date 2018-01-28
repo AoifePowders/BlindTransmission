@@ -48,15 +48,16 @@ private:
 	Audio musik;
 
 	Enemy m_enemy;
-	Cat m_cat;
 	Vase m_vase;
 	
+	Cat m_cats[5];
 	
 	MainMenu m_mainMenuScreen;
 	Grid world;
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();
+	void loadLevel(int levelnum);
 
 	std::vector<std::shared_ptr<Audio>> playerSounds;
 	std::shared_ptr<Audio> a;
