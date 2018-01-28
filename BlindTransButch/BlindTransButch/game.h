@@ -15,6 +15,8 @@
 #include "CollisionManager.h"
 #include "Vase.h"
 #include "MainMenu.h"
+#include "Win.h"
+#include "Lose.h"
 
 enum class GameState
 {
@@ -54,6 +56,9 @@ private:
 	
 	MainMenu m_mainMenuScreen;
 	Grid world;
+	Win m_winScreen;
+	Lose m_loseScreen;
+
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();

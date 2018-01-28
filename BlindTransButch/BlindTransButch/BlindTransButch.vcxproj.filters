@@ -44,7 +44,13 @@
     <ClCompile Include="Radio.cpp" />
 =======
     <ClCompile Include="MainMenu.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="Win.cpp" />
+    <ClCompile Include="Lose.cpp" />
+    <ClCompile Include="Credits.cpp" />
+=======
 >>>>>>> Aoifesbranch
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -90,7 +96,13 @@
     <ClInclude Include="Radio.h" />
 =======
     <ClInclude Include="MainMenu.h" />
+<<<<<<< HEAD
+    <ClInclude Include="Win.h" />
+    <ClInclude Include="Lose.h" />
+    <ClInclude Include="Credits.h" />
+=======
 >>>>>>> Aoifesbranch
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\Knuckles.png">

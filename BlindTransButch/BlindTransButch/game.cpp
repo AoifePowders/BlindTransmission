@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <iostream>
 
-GameState Game::m_currentState = GameState::MAINMENU;
+GameState Game::m_currentState = GameState::LOSE;
 
 Game::Game() :
 
@@ -17,6 +17,8 @@ Game::Game() :
 	m_player.setUp(playerSounds);
 	m_controller.connect();
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_winScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_loseScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 }
 
 Game::~Game()
@@ -123,6 +125,20 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.move(m_controller);
 		checkCollision();
 		break;
+	case GameState::WIN:
+		if (m_winScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::PLAYING;
+		}
+		m_winScreen.update();
+		break;
+	case GameState::LOSE:
+		if (m_loseScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::PLAYING;
+		}
+		m_winScreen.update();
+		break;
 	}
 
 	for (int i = 0; i < 5; i++)
@@ -163,6 +179,12 @@ void Game::render()
 		m_player.render(m_window);
 		m_enemy.render(m_window);
 		break;
+	case GameState::WIN:
+		m_winScreen.render(m_window);
+		break;
+	case GameState::LOSE:
+		m_loseScreen.render(m_window);
+		break;
 	}
 	m_window.display();
 }
@@ -171,7 +193,7 @@ void Game::render()
 /// load the font and setup the text message for screen
 /// </summary>
 void Game::setupFontAndText()
-{
+{ 
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
