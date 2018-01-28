@@ -48,9 +48,9 @@ private:
 	Audio musik;
 
 	Enemy m_enemy;
-	Cat m_cat;
 	Vase m_vase;
 	
+	Cat m_cats[5];
 	
 	MainMenu m_mainMenuScreen;
 	Grid world;
