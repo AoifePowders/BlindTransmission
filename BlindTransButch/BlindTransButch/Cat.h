@@ -24,9 +24,9 @@ public:
 	bool contact;
 	bool catAlive{ true };
 
+	sf::Sprite m_sprite;
 private:
 	sf::Texture m_catTexture;
-	sf::Sprite m_sprite;
 	sf::IntRect m_rect;
 	std::vector<SoundEmitter*> m_mews;
 	std::shared_ptr<Audio> m_sound;
