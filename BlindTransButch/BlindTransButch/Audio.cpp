@@ -20,7 +20,7 @@ Audio::~Audio()
 //Adds the sound from file to the buffer.
 void Audio::loadAudio(const std::string & file, int volume, std::string t)
 {
-	std::cout << "Loading";
+	std::cout << "Loading " << t << std::endl;
 	m_tag = t;
 	s.loadFromFile(file);
 	m_sound.setBuffer(s);
@@ -29,6 +29,7 @@ void Audio::loadAudio(const std::string & file, int volume, std::string t)
 //Plays Audio once
 void Audio::playSingle()
 {
+	m_sound.setVolume(100);
 	m_sound.play();
 }
 //Play audio and loops it when done

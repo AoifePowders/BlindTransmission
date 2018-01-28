@@ -11,13 +11,11 @@ Game::Game() :
 {
 	loadSounds();
 	setupFontAndText(); // load font 
-	for (int i = 0; i < 5; i++)
-	{
-		playerSounds.push_back(a);
-	}
-	m_player.setUp(playerSounds);
 	m_controller.connect();
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	musik.playLoop();
+	vaseBroken = true;
+	m_player.setUp(playerSounds);
 }
 
 Game::~Game()
@@ -29,11 +27,11 @@ void Game::run()
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	sf::Time timePerFrame = sf::seconds(1.f / 60.f); // 60 fps
-
+	
 
 	//Initialise
 	loadLevel(1);
-         
+
 	while (m_window.isOpen())
 	{
 		processEvents(); // as many as possible
@@ -188,6 +186,12 @@ void Game::checkCollision()
 	if (cManager.checkCollision(m_player.m_body, m_vase.m_body))
 	{
 		m_vase.isBroken = true;
+		if (vaseBroken)
+		{
+			vaseBroken = false;
+			soundEffects.at(4).playSingle();
+		}
+		
 	}
 
 	for (int i = 0; i < world.map.size(); i++)
@@ -221,6 +225,7 @@ void Game::checkCollision()
 			if (std::abs(offsetX) > std::abs(offsetY))
 			{
 				m_player.m_position.y += offsetY;
+				
 			}
 			else
 			{
@@ -260,27 +265,46 @@ void Game::loadLevel(int levelnum)
 }
 void Game::loadSounds()
 {
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerLow.wav", 50, "lowScan")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerHigh.wav", 50, "highScan")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//callcatLow.wav", 50, "lowCat")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//callcatHigh.wav", 50, "highCat")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "breathe")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "lowStep")));
-	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "highStep")));	//
 
-	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow1.wav", 50, "Tina")));
-	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow2.wav", 50, "Fred")));
-	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow3.wav", 50, "Kaplan")));
-	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow4.wav", 50, "Harold")));
-	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow5.wav", 50, "Geoffrey")));
 
-	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowClick.wav", 50, "click")));
-	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowClose.wav", 50, "close")));
-	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowAttack.wav", 50, "attack")));
+	musik.loadAudio("ASSETS//SOUNDS//themetune.wav", 50, "highScan");
+	for (int i = 0; i < 7; i++)
+	{
+		playerSounds.push_back(Audio());
+	}
+	playerSounds.at(0).loadAudio("ASSETS//SOUNDS//meow1.wav", 100, "lowScan");
+	playerSounds.at(1).loadAudio("ASSETS//SOUNDS//meow2.wav", 100, "highScan");
+	playerSounds.at(2).loadAudio("ASSETS//SOUNDS//meow3.wav", 100, "lowCat");
+	playerSounds.at(3).loadAudio("ASSETS//SOUNDS//meow4.wav", 100, "highCat");
+	playerSounds.at(4).loadAudio("ASSETS//SOUNDS//playerBreathe.wav", 100, "breathe");
+	playerSounds.at(5).loadAudio("ASSETS//SOUNDS//stepQuiet.wav", 100, "lowStep");
+	playerSounds.at(6).loadAudio("ASSETS//SOUNDS//stepLoud.wav", 100, "highStep");
 
-	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//door.wav", 50, "door")));
-	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//bump.wav", 50, "bump")));
-	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//RadioStatic.wav", 50, "staticRadio")));
-	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//radiovoice.wav", 50, "voiceRadio")));
-	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//vaseBreak.wav", 50, "vaseBreak")));
+	for (int i = 0; i < 5; i++)
+	{	
+		catMeows.push_back(Audio());
+	}
+	catMeows.at(0).loadAudio("ASSETS//SOUNDS//meow1.wav", 50, "Tina");
+	catMeows.at(1).loadAudio("ASSETS//SOUNDS//meow2.wav", 50, "Fred");
+	catMeows.at(2).loadAudio("ASSETS//SOUNDS//meow3.wav", 50, "Kaplan");
+	catMeows.at(3).loadAudio("ASSETS//SOUNDS//meow4.wav", 50, "Harrold");
+	catMeows.at(4).loadAudio("ASSETS//SOUNDS//meow5.wav", 50, "Geoffrey");
+	for (int i = 0; i < 3; i++)
+	{
+		enemySounds.push_back(Audio());
+	}
+	enemySounds.at(0).loadAudio("ASSETS//SOUNDS//shadowClick.wav", 50, "click");
+	enemySounds.at(1).loadAudio("ASSETS//SOUNDS//shadowClose.wav", 50, "close");
+	enemySounds.at(2).loadAudio("ASSETS//SOUNDS//shadowAttack.wav", 50, "close");
+
+	for (int i = 0; i < 5; i++)
+	{
+		soundEffects.push_back(Audio());
+	}
+	soundEffects.at(0).loadAudio("ASSETS//SOUNDS//door.wav", 50, "door");
+	soundEffects.at(1).loadAudio("ASSETS//SOUNDS//bump.wav", 50, "bump");
+	soundEffects.at(2).loadAudio("ASSETS//SOUNDS//RadioStatic.wav", 50, "staticRadio");
+	soundEffects.at(3).loadAudio("ASSETS//SOUNDS//radiovoice.wav", 50, "voiceRadio");
+	soundEffects.at(4).loadAudio("ASSETS//SOUNDS//vaseBreak.wav", 50, "vaseBreak");
+
 }

@@ -20,7 +20,7 @@ public:
 	Player();
 	~Player();
 
-	void setUp(std::vector<std::shared_ptr<Audio>> s);
+	void setUp(std::vector<Audio> & s);
 	void move(Xbox360Controller &t_controller);
 	void render(sf::RenderWindow & t_window);
 	void update(sf::Time t_deltaTime, Xbox360Controller &t_controller);
@@ -50,7 +50,7 @@ private:
 	// 2. Low Cat
 	// 3. High cat
 	// 4. panting
-	std::vector<std::shared_ptr<Audio>> m_sounds;
+	std::vector<Audio> m_sounds;
 	void playerCalls(Xbox360Controller &t_controller);
 
 	int m_breathTimer;

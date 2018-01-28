@@ -11,7 +11,7 @@ public:
 	SoundEmitter();
 	~SoundEmitter();
 
-	SoundEmitter(sf::Vector2f p, std::shared_ptr<Audio> a, int t, sf::Color c);
+	SoundEmitter(sf::Vector2f p, Audio & a, int t, sf::Color c);
 
 	bool checkCollision(sf::IntRect r);
 	void update();

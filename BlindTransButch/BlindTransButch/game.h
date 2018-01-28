@@ -48,6 +48,7 @@ private:
 	Audio musik;
 
 	Enemy m_enemy;
+	bool vaseBroken;
 	Vase m_vase;
 	
 	Cat m_cats[5];
@@ -59,11 +60,10 @@ private:
 	void checkCollision();
 	void loadLevel(int levelnum);
 	void loadSounds();
-	std::vector<std::shared_ptr<Audio>> soundEffects;
-	std::vector<std::shared_ptr<Audio>> catMeows;
-	std::vector<std::shared_ptr<Audio>> enemySounds;
-	std::vector<std::shared_ptr<Audio>> playerSounds;
-	std::shared_ptr<Audio> a;
+	std::vector<Audio> soundEffects;
+	std::vector<Audio> catMeows;
+	std::vector<Audio> enemySounds;
+	std::vector<Audio> playerSounds;
 
 };
 

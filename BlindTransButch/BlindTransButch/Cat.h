@@ -17,7 +17,7 @@ public:
 	void update();
 	void render(sf::RenderWindow & w);
 	void meow();
-	void setup(sf::Vector2f pos, const std::string & file, std::shared_ptr<Audio> s);
+	void setup(sf::Vector2f pos, const std::string & file, Audio & s);
 	sf::IntRect getRect();
 	sf::Vector2f m_position{ 200,200 };
 
@@ -29,7 +29,7 @@ private:
 	sf::Sprite m_sprite;
 	sf::IntRect m_rect;
 	std::vector<SoundEmitter*> m_mews;
-	std::shared_ptr<Audio> m_sound;
+	Audio m_sound;
 
 };
 #endif // !CAT

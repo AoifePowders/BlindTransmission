@@ -21,7 +21,7 @@ Player::~Player()
 {
 }
 
-void Player::setUp(std::vector<std::shared_ptr<Audio>> s)
+void Player::setUp(std::vector<Audio> & s)
 {
 	m_body.setFillColor(sf::Color::White);
 	m_body.setPosition(m_position);
@@ -64,7 +64,7 @@ void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
 				outOfBreath = true;
 				if (breathSound)
 				{	
-					//m_sounds.at(4)->playSingle();
+					m_sounds.at(4).playSingle();
 					std::cout << "breath goddamnit" << std::endl;
 					breathSound = false;
 				}
@@ -187,24 +187,28 @@ void Player::playerCalls(Xbox360Controller &t_controller)
 		//Low scan
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || t_controller.m_currentState.B)
 		{
+			m_sounds.at(0).playSingle();
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(0), 10, sf::Color::White));
 			m_breathTimer = 100;
 		}
 		//high Scan
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || t_controller.m_currentState.A)
 		{
+			m_sounds.at(1).playSingle();
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(1), 15, sf::Color::Magenta));
 			m_breathTimer = 200;
 		}
 		//Low Cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || t_controller.m_currentState.X)
 		{
+			m_sounds.at(2).playSingle();
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(2), 10, sf::Color::Green));
 			m_breathTimer = 100;
 		}
 		//High cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || t_controller.m_currentState.Y)
 		{
+			m_sounds.at(3).playSingle();
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(3), 15, sf::Color::Cyan));
 			m_breathTimer = 200;
 		}

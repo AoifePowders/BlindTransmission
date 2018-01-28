@@ -8,7 +8,7 @@ Cat::Cat()
 Cat::~Cat()
 {
 }
-void Cat::setup(sf::Vector2f pos, const std::string & file, std::shared_ptr<Audio> s)
+void Cat::setup(sf::Vector2f pos, const std::string & file, Audio & s)
 {
 	m_catTexture.loadFromFile(file);
 	m_sprite.setTexture(m_catTexture);
