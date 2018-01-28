@@ -7,7 +7,7 @@ Audio::Audio()
 }
 Audio::Audio(const std::string & file, int volume, std::string t)
 {
-	std::cout << "Loading";
+	std::cout << "Loading " << t << std::endl;
 	m_tag = t;
 	s.loadFromFile(file);
 	m_sound.setBuffer(s);
