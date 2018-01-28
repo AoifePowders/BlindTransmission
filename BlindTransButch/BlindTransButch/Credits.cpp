@@ -25,10 +25,10 @@ void Credits::update()
 	counter++;
 	if (counter < 1000)
 	{
-		m_positionY--;
+		m_positionY-=2;
 		m_creditsText.setPosition(500, m_positionY);
 	}
-	if (counter == 1200)
+	if (counter == 900)
 	{
 		m_switchStart = true;
 	}
