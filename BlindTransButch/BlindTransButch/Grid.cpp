@@ -24,10 +24,10 @@ void Grid::initialise(int level)
 	//Tile textures
 	std::string floorTexturePath = "ASSETS//IMAGES//floor2.png";
 	std::string wallTexturePath = "ASSETS//IMAGES//wall.png";
-	std::string exitTexturePath = "ASSETS//IMAGES//floor2.png";
-	std::string tableTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string chairTexturePath = "ASSETS//IMAGES//FLOOR.png";
-	std::string bedTexturePath = "ASSETS//IMAGES//FLOOR.png";
+	std::string exitTexturePath = "ASSETS//IMAGES//exit.png";
+	std::string tableTexturePath = "ASSETS//IMAGES//table.png";
+	std::string chairTexturePath = "ASSETS//IMAGES//chair.png";
+	std::string bedTexturePath = "ASSETS//IMAGES//bed.png";
 	std::string radioTexturePath = "ASSETS//IMAGES//FLOOR.png";
 	//Load the level grid from a text file
 	switch (level)

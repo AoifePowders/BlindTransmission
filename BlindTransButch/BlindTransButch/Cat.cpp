@@ -4,7 +4,8 @@
 
 Cat::Cat()
 {
-	
+	m_sprite.setPosition(sf::Vector2f(200, 200));
+	m_sprite.setColor(sf::Color::Yellow);
 }
 Cat::~Cat()
 {
@@ -48,7 +49,10 @@ void Cat::render(sf::RenderWindow & w)
 		m_mews.at(i)->render(w);
 
 	}
-	w.draw(m_sprite);
+	if (isAlive)
+	{
+		w.draw(m_sprite);
+	}
 }
 void Cat::meow()
 {
