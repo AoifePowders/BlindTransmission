@@ -26,15 +26,17 @@ void Player::setUp(std::vector<std::shared_ptr<Audio>> s)
 	m_body.setFillColor(sf::Color::White);
 	m_body.setPosition(m_position);
 	m_body.setSize(m_size);
-	m_body.setOrigin(m_body.getSize().x * .5, m_body.getSize().y * .5);
 	m_sounds = s;
-	breathTimer = 0;
+	m_breathTimer = 0;
+	outOfBreath = false;
+	breathSound = true;
+	m_body.setOrigin(m_body.getSize().x * .5, m_body.getSize().y * .5);
 }
 
 void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
 {
 	//Sound emitters
-	breathTimer--;
+	m_breathTimer--;
 	playerCalls(t_controller);
 	for (int i = 0; i < m_calls.size(); i++)
 	{
@@ -48,17 +50,39 @@ void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
 			m_calls.erase(m_calls.begin() + i);
 		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && m_currentAnimation == PlayerAnimation::Walking || t_controller.m_currentState.RB)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) || t_controller.m_currentState.RB)
 	{
-		m_speed = 1.5;
-		m_breath -= 0.3;
-		m_currentAnimation = PlayerAnimation::Running;
+		if (m_breath > 0 && !outOfBreath)
+		{
+			m_speed = 1.5;
+			m_breath -= 0.3;
+			m_currentAnimation = PlayerAnimation::Running;
+			if (m_breath <= 0)
+			{
+				m_breath = 0;
+				m_speed = .5f;
+				outOfBreath = true;
+				if (breathSound)
+				{	
+					//m_sounds.at(4)->playSingle();
+					std::cout << "breath goddamnit" << std::endl;
+					breathSound = false;
+				}
+				
+			}
+		}
 	}
 	else
 	{
+		
 		m_speed = .5f;
-		m_breath += 0.3;
+		m_breath += 0.5;
+		if (m_breath >= 30)
+		{
+			m_breath = 30;
+			outOfBreath = false;	
+			breathSound = true;
+		}
 	}
 
 	/*if (m_breath <= 0)
@@ -157,31 +181,32 @@ void Player::render(sf::RenderWindow & t_window)
 }
 void Player::playerCalls(Xbox360Controller &t_controller)
 {
-	if (breathTimer < 0)
+
+	if (m_breathTimer < 0)
 	{
 		//Low scan
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || t_controller.m_currentState.B)
 		{
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(0), 10, sf::Color::White));
-			breathTimer = 100;
+			m_breathTimer = 100;
 		}
 		//high Scan
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || t_controller.m_currentState.A)
 		{
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(1), 15, sf::Color::Magenta));
-			breathTimer = 200;
+			m_breathTimer = 200;
 		}
 		//Low Cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || t_controller.m_currentState.X)
 		{
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(2), 10, sf::Color::Green));
-			breathTimer = 100;
+			m_breathTimer = 100;
 		}
 		//High cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || t_controller.m_currentState.Y)
 		{
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(3), 15, sf::Color::Cyan));
-			breathTimer = 200;
+			m_breathTimer = 200;
 		}
 	}
 }
