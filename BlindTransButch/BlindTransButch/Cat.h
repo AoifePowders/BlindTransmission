@@ -22,6 +22,7 @@ public:
 	sf::Vector2f m_position{ 200,200 };
 
 	bool contact;
+	bool catAlive{ true };
 
 private:
 	sf::Texture m_catTexture;

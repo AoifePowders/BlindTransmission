@@ -27,7 +27,9 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Radio.cpp" />
     <ClCompile Include="SoundEmitter.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vase.cpp" />
@@ -41,7 +43,9 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Radio.h" />
     <ClInclude Include="screenSize.h" />
     <ClInclude Include="SoundEmitter.h" />
     <ClInclude Include="Tile.h" />

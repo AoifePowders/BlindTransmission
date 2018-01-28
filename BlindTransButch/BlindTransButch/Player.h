@@ -3,6 +3,9 @@
 #include<SFML\Graphics.hpp>
 #include "Xbox360Controller.h"
 #include "screenSize.h"
+#include <memory>
+#include <vector>
+#include "SoundEmitter.h"
 
 enum PlayerAnimation
 {
@@ -17,7 +20,7 @@ public:
 	Player();
 	~Player();
 
-	void setUp();
+	void setUp(std::vector<std::shared_ptr<Audio>> s);
 	void move(Xbox360Controller &t_controller);
 	void render(sf::RenderWindow & t_window);
 	void update(sf::Time t_deltaTime, Xbox360Controller &t_controller);
@@ -35,5 +38,13 @@ public:
 	sf::Texture m_walk2Texture;
 	
 	PlayerAnimation m_currentAnimation{ PlayerAnimation::Idle };
+
+private:
+
+	std::vector<SoundEmitter*> m_calls;
+	std::vector<std::shared_ptr<Audio>> m_sounds;
+	void playerCalls(Xbox360Controller &t_controller);
+
+	int breathTimer;
 };
 #endif // !PLAYER

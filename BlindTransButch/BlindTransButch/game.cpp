@@ -2,14 +2,21 @@
 #include "Game.h"
 #include <iostream>
 
+GameState Game::m_currentState = GameState::MAINMENU;
+
 Game::Game() :
 
 	m_window{ sf::VideoMode{ unsigned(screenSize::s_width), unsigned(screenSize::s_height), 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	m_player.setUp();
+	for (int i = 0; i < 4; i++)
+	{
+		playerSounds.push_back(a);
+	}
+	m_player.setUp(playerSounds);
 	m_controller.connect();
+	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 }
 
 Game::~Game()
@@ -27,7 +34,7 @@ void Game::run()
 	world.initialise(1);
 
 
-
+         
 	while (m_window.isOpen())
 	{
 		processEvents(); // as many as possible
@@ -71,6 +78,13 @@ void Game::processEvents()
 			m_window.close();
 		}
 	}
+
+	switch (m_currentState)
+	{
+	case GameState::MAINMENU:
+		m_mainMenuScreen.keyIsPressed(m_controller);
+		break;
+	}
 }
 
 /// <summary>
@@ -88,10 +102,27 @@ void Game::update(sf::Time t_deltaTime)
 		m_controller.connect();
 	}
 	m_controller.m_previousState = m_controller.m_currentState;
-
-	if (m_exitGame)
+	
+	switch (m_currentState)
 	{
-		m_window.close();
+	case GameState::MAINMENU:
+		m_mainMenuScreen.update(t_deltaTime);
+		m_mainMenuScreen.keyIsPressed(m_controller);
+		if (m_mainMenuScreen.m_switchStart)
+		{
+			m_currentState = GameState::PLAYING;
+			m_mainMenuScreen.m_switchStart = false;
+		}
+		if (m_mainMenuScreen.m_switchExit == true)
+		{
+			m_window.close();
+		}
+		break;
+	case GameState::PLAYING:
+		world.update();
+		m_player.move(m_controller);
+		checkCollision();
+		break;
 	}
 
 	world.update();
@@ -109,11 +140,19 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-	world.render(m_window);
-	m_player.render(m_window);
-	m_cat.render(m_window);
-	m_enemy.render(m_window);
-	m_vase.render(m_window);
+	switch (m_currentState)
+	{
+	case GameState::MAINMENU:
+		m_mainMenuScreen.render(m_window);
+		break;
+	case GameState::PLAYING:
+		world.render(m_window);
+		m_vase.render(m_window);
+		m_player.render(m_window);
+		m_cat.render(m_window);
+		m_enemy.render(m_window);
+		break;
+	}
 	m_window.display();
 }
 
@@ -125,6 +164,11 @@ void Game::setupFontAndText()
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
+	}
+
+	if (!m_knucklesTexture.loadFromFile("ASSETS\\IMAGES\\Knuckles.png"))
+	{
+		std::cout << "Knuckles not loaded" << std::endl;
 	}
 }
 
@@ -167,6 +211,11 @@ void Game::checkCollision()
 				}
 			}
 		}
+		if (cManager.checkCollision(m_player.m_body, m_cat.getRect()))
+		{
+			m_cat.catAlive = false;	
+		}
+
 		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
