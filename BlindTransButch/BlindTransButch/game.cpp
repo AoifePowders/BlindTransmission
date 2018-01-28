@@ -185,6 +185,7 @@ void Game::render()
 		}
 		m_player.render(m_window);
 		m_enemy.render(m_window);
+		m_radio.render(m_window);
 		break;
 	case GameState::WIN:
 		m_winScreen.render(m_window);
