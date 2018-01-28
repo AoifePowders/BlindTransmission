@@ -19,9 +19,11 @@ public:
 	bool checkCollision(sf::RectangleShape &point, sf::IntRect &box);
 	bool checkCollision(sf::IntRect &a, sf::IntRect &b);
 	bool checkCollision(sf::RectangleShape &a, sf::RectangleShape &b);
+	bool checkCollision(sf::RectangleShape &a, sf::FloatRect &b);
 	float getHorizontalIntersectionDepth(sf::FloatRect &a, sf::FloatRect &b);
 	float getVerticalIntersectionDepth(sf::FloatRect &a, sf::FloatRect &b);
 	sf::FloatRect asFloatRect(sf::IntRect& rect);
+	sf::IntRect asIntRect(sf::FloatRect &rect);
 	sf::FloatRect asFloatRect(sf::RectangleShape &rect);
 private:
 

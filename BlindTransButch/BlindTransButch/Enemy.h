@@ -10,17 +10,25 @@ public:
 	Enemy();
 	~Enemy();
 
-	void update(sf::Vector2f t_soundPos);
+	void update();
 	void render(sf::RenderWindow & t_window);
 
+	float speed{ .5f };
+
+	void move();
+
 	bool m_isMoving{ false };
-	sf::Vector2f m_position{ 200,200 };
+
+	sf::Vector2f m_target{ 0,0 };
+	sf::Vector2f m_position{ 0,0 };
+
+	sf::RectangleShape m_body;
+
 	
 private:
-	sf::RectangleShape m_body;
 	sf::Texture m_knucklesTexture;
 
-	void move(sf::Vector2f t_soundPos);
+	
 };
 
 #endif // !ENEMY
