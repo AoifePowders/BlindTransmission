@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include "SoundEmitter.h"
+#include "Enemy.h"
 
 enum PlayerAnimation
 {
@@ -23,7 +24,7 @@ public:
 	void setUp(std::vector<std::shared_ptr<Audio>> s);
 	void move(Xbox360Controller &t_controller);
 	void render(sf::RenderWindow & t_window);
-	void update(sf::Time t_deltaTime, Xbox360Controller &t_controller);
+	void update(sf::Time t_deltaTime, Xbox360Controller &t_controller, Enemy & enemy);
 	
 	sf::RectangleShape m_body;
 	sf::Vector2f m_size{ 64.0f,64.0f };
@@ -51,7 +52,7 @@ private:
 	// 3. High cat
 	// 4. panting
 	std::vector<std::shared_ptr<Audio>> m_sounds;
-	void playerCalls(Xbox360Controller &t_controller);
+	void playerCalls(Xbox360Controller &t_controller, Enemy & enemy);
 
 	int m_breathTimer;
 	bool outOfBreath;
