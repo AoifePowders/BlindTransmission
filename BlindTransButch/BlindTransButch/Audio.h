@@ -9,6 +9,7 @@ class Audio
 {
 public:
 	Audio();
+	Audio(const std::string & file, int volume, std::string t);
 	~Audio();
 
 	void loadAudio(const std::string & file, int volume, std::string t);

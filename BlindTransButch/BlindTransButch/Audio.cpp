@@ -5,7 +5,14 @@
 Audio::Audio()
 {
 }
-
+Audio::Audio(const std::string & file, int volume, std::string t)
+{
+	std::cout << "Loading";
+	m_tag = t;
+	s.loadFromFile(file);
+	m_sound.setBuffer(s);
+	m_sound.setVolume(volume);
+}
 
 Audio::~Audio()
 {
