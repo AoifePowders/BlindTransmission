@@ -58,7 +58,10 @@ private:
 	CollisionManager cManager;
 	void checkCollision();
 	void loadLevel(int levelnum);
-
+	void loadSounds();
+	std::vector<std::shared_ptr<Audio>> soundEffects;
+	std::vector<std::shared_ptr<Audio>> catMeows;
+	std::vector<std::shared_ptr<Audio>> enemySounds;
 	std::vector<std::shared_ptr<Audio>> playerSounds;
 	std::shared_ptr<Audio> a;
 
