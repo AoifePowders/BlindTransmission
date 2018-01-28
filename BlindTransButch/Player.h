@@ -44,5 +44,7 @@ private:
 	std::vector<SoundEmitter*> m_calls;
 	std::vector<std::shared_ptr<Audio>> m_sounds;
 	void playerCalls(Xbox360Controller &t_controller);
+
+	int breathTimer;
 };
 #endif // !PLAYER
