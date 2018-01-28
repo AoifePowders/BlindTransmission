@@ -15,14 +15,19 @@
 #include "CollisionManager.h"
 #include "Vase.h"
 #include "MainMenu.h"
+
 #include "Radio.h"
+#include "Win.h"
+#include "Lose.h"
+#include "Credits.h"
 
 enum class GameState
 {
 	MAINMENU,
 	PLAYING,
 	WIN,
-	LOSE
+	LOSE,
+	CREDITS
 };
 
 class Game
@@ -54,15 +59,20 @@ private:
 	Radio m_radio;
 
 	Cat m_cats[5];
-	
+	Credits m_creditsScreen;
 	MainMenu m_mainMenuScreen;
 	Grid world;
+	Win m_winScreen;
+	Lose m_loseScreen;
+
 	int currentLevel = 1;
 	CollisionManager cManager;
 	void checkCollision();
-
 	void loadLevel(int levelnum);
-
+	void loadSounds();
+	std::vector<std::shared_ptr<Audio>> soundEffects;
+	std::vector<std::shared_ptr<Audio>> catMeows;
+	std::vector<std::shared_ptr<Audio>> enemySounds;
 	std::vector<std::shared_ptr<Audio>> playerSounds;
 	std::shared_ptr<Audio> a;
 

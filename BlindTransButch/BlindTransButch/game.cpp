@@ -9,14 +9,18 @@ Game::Game() :
 	m_window{ sf::VideoMode{ unsigned(screenSize::s_width), unsigned(screenSize::s_height), 32 }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
+	loadSounds();
 	setupFontAndText(); // load font 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		playerSounds.push_back(a);
 	}
 	m_player.setUp(playerSounds);
 	m_controller.connect();
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_winScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_loseScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_creditsScreen.setUp(m_ArialBlackfont);
 }
 
 Game::~Game()
@@ -32,8 +36,6 @@ void Game::run()
 
 	//Initialise
 	loadLevel(1);
-
-
          
 	while (m_window.isOpen())
 	{
@@ -123,6 +125,27 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.move(m_controller);
 		checkCollision();
 		break;
+	case GameState::WIN:
+		if (m_winScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::PLAYING;
+		}
+		m_winScreen.update();
+		break;
+	case GameState::LOSE:
+		if (m_loseScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::PLAYING;
+		}
+		m_loseScreen.update();
+		break;
+	case GameState::CREDITS:
+		if (m_creditsScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::WIN;
+		}
+		m_creditsScreen.update();
+		break;
 	}
 
 	for (int i = 0; i < 5; i++)
@@ -164,6 +187,15 @@ void Game::render()
 		m_enemy.render(m_window);
 		m_radio.render(m_window);
 		break;
+	case GameState::WIN:
+		m_winScreen.render(m_window);
+		break;
+	case GameState::LOSE:
+		m_loseScreen.render(m_window);
+		break;
+	case GameState::CREDITS:
+		m_creditsScreen.render(m_window);
+		break;
 	}
 	m_window.display();
 }
@@ -172,7 +204,7 @@ void Game::render()
 /// load the font and setup the text message for screen
 /// </summary>
 void Game::setupFontAndText()
-{
+{ 
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
@@ -205,16 +237,17 @@ void Game::checkCollision()
 		}
 
 		for (int i = 0; i < 5; i++)
-
-		if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 		{
 			if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
 			{
-				m_cats[i].catAlive = false;
+				if (cManager.checkCollision(m_player.m_body, m_cats[i].getRect()))
+				{
+					m_cats[i].catAlive = false;
+				}
 			}
 		}
 
-if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
+		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
@@ -258,4 +291,30 @@ void Game::loadLevel(int levelnum)
 	default:
 		break;
 	}
+}
+void Game::loadSounds()
+{
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerLow.wav", 50, "lowScan")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerHigh.wav", 50, "highScan")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//callcatLow.wav", 50, "lowCat")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//callcatHigh.wav", 50, "highCat")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "breathe")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "lowStep")));
+	playerSounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//playerBreathe.wav", 50, "highStep")));	//
+
+	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow1.wav", 50, "Tina")));
+	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow2.wav", 50, "Fred")));
+	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow3.wav", 50, "Kaplan")));
+	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow4.wav", 50, "Harold")));
+	catMeows.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//meow5.wav", 50, "Geoffrey")));
+
+	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowClick.wav", 50, "click")));
+	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowClose.wav", 50, "close")));
+	enemySounds.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//shadowAttack.wav", 50, "attack")));
+
+	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//door.wav", 50, "door")));
+	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//bump.wav", 50, "bump")));
+	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//RadioStatic.wav", 50, "staticRadio")));
+	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//radiovoice.wav", 50, "voiceRadio")));
+	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//vaseBreak.wav", 50, "vaseBreak")));
 }
