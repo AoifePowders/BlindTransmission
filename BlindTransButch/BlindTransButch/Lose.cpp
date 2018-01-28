@@ -13,7 +13,7 @@ Lose::~Lose()
 
 void Lose::setUp(sf::Font & t_font, sf::Texture & t_texture)
 {
-	m_loseText.setCharacterSize(50);
+	m_loseText.setCharacterSize(80);
 	m_loseText.setFillColor(sf::Color(117, 3, 3, 150));
 	m_loseText.setFont(t_font);
 	m_loseText.setPosition(100, 100);
@@ -28,7 +28,7 @@ void Lose::setUp(sf::Font & t_font, sf::Texture & t_texture)
 void Lose::update()
 {
 	counter++;
-	if (counter == 100)
+	if (counter == 500)
 	{
 		m_switchStart = true;
 	}

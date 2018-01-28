@@ -10,14 +10,14 @@ public:
 	Credits();
 	~Credits();
 
-	void setUp(sf::Font &t_font, sf::Texture &t_texture);
+	void setUp(sf::Font &t_font);
 	void update();
 	void render(sf::RenderWindow &t_window);
 	bool m_switchStart = false;
 
 private:
 	sf::Text m_creditsText;
-	sf::RectangleShape m_creditsRect;
+	int m_positionY = 700;
 	int counter = 0;
 
 };

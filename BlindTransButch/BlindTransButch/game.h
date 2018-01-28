@@ -17,13 +17,15 @@
 #include "MainMenu.h"
 #include "Win.h"
 #include "Lose.h"
+#include "Credits.h"
 
 enum class GameState
 {
 	MAINMENU,
 	PLAYING,
 	WIN,
-	LOSE
+	LOSE,
+	CREDITS
 };
 
 class Game
@@ -53,7 +55,7 @@ private:
 	Vase m_vase;
 	
 	Cat m_cats[5];
-	
+	Credits m_creditsScreen;
 	MainMenu m_mainMenuScreen;
 	Grid world;
 	Win m_winScreen;

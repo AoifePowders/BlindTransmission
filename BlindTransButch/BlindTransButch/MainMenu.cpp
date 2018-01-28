@@ -24,8 +24,8 @@ void MainMenu::setUp(sf::Font & t_font, sf::Texture &t_texture)
 		m_buttonText[i].setFont(t_font);
 		m_buttonText[i].setString(Text[i]);
 		m_buttonText[i].setFillColor(sf::Color::White);
-		m_buttonText[i].setCharacterSize(24);
-		m_buttonText[i].setPosition(990 , (i * 100) + 495);
+		m_buttonText[i].setCharacterSize(45);
+		m_buttonText[i].setPosition(990 , (i * 100) + 475);
 	}
 
 	m_background.setSize(sf::Vector2f(464, 464));

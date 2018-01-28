@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <iostream>
 
-GameState Game::m_currentState = GameState::LOSE;
+GameState Game::m_currentState = GameState::MAINMENU;
 
 Game::Game() :
 
@@ -19,6 +19,7 @@ Game::Game() :
 	m_mainMenuScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 	m_winScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 	m_loseScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
+	m_creditsScreen.setUp(m_ArialBlackfont);
 }
 
 Game::~Game()
@@ -137,7 +138,14 @@ void Game::update(sf::Time t_deltaTime)
 		{
 			m_currentState = GameState::PLAYING;
 		}
-		m_winScreen.update();
+		m_loseScreen.update();
+		break;
+	case GameState::CREDITS:
+		if (m_creditsScreen.m_switchStart == true)
+		{
+			m_currentState = GameState::WIN;
+		}
+		m_creditsScreen.update();
 		break;
 	}
 
@@ -184,6 +192,9 @@ void Game::render()
 		break;
 	case GameState::LOSE:
 		m_loseScreen.render(m_window);
+		break;
+	case GameState::CREDITS:
+		m_creditsScreen.render(m_window);
 		break;
 	}
 	m_window.display();
