@@ -15,9 +15,9 @@ public:
 
 	bool m_isMoving{ false };
 	sf::Vector2f m_position{ 200,200 };
+	sf::RectangleShape m_body;
 	
 private:
-	sf::RectangleShape m_body;
 	sf::Texture m_knucklesTexture;
 
 	void move(sf::Vector2f t_soundPos);

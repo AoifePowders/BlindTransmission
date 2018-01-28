@@ -92,6 +92,7 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+	darken();
 	if (m_controller.isConnected())
 	{
 		m_controller.update();
@@ -237,22 +238,27 @@ void Game::loadLevel(int levelnum)
 	case 1:
 		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
 		world.initialise(1);
+		m_vase.isBroken = false;
 		break;
 	case 2:
-		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		m_player.m_position = sf::Vector2f(86 * 12, 86 * 6);
 		world.initialise(2);
+		m_vase.isBroken = false;
 		break;
 	case 3:
-		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		m_player.m_position = sf::Vector2f(86 * 12, 86 * 4);
 		world.initialise(3);
+		m_vase.isBroken = false;
 		break;
 	case 4:
-		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		m_player.m_position = sf::Vector2f(86 * 6, 86 * 6);
 		world.initialise(4);
+		m_vase.isBroken = false;
 		break;
 	case 5:
 		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
 		world.initialise(5);
+		m_vase.isBroken = false;
 		break;
 	default:
 		break;
@@ -283,4 +289,49 @@ void Game::loadSounds()
 	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//RadioStatic.wav", 50, "staticRadio")));
 	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//radiovoice.wav", 50, "voiceRadio")));
 	soundEffects.push_back(std::make_shared<Audio>(Audio("ASSETS//SOUNDS//vaseBreak.wav", 50, "vaseBreak")));
+}
+void Game::darken()
+{
+	/*
+	Player
+	Enemy
+	Vase
+	Radio
+	Tiles
+	Cats
+	*/
+	if (m_player.m_body.getFillColor().a > 50)
+	{
+		m_player.m_body.setFillColor(sf::Color(m_player.m_body.getFillColor().r, m_player.m_body.getFillColor().g,
+			m_player.m_body.getFillColor().b, m_player.m_body.getFillColor().a - 1));
+	}
+	if (m_enemy.m_body.getFillColor().a > 0)
+	{
+		m_enemy.m_body.setFillColor(sf::Color(m_enemy.m_body.getFillColor().r, m_enemy.m_body.getFillColor().g,
+			m_enemy.m_body.getFillColor().b, m_enemy.m_body.getFillColor().a - 1));
+	}
+	if (m_vase.m_body.getFillColor().a > 0)
+	{
+		m_vase.m_body.setFillColor(sf::Color(m_vase.m_body.getFillColor().r, m_vase.m_body.getFillColor().g,
+			m_vase.m_body.getFillColor().b, m_vase.m_body.getFillColor().a - 1));
+	}
+	/*if (m_player.m_body.getFillColor().a > 0)
+	{
+		m_player.m_body.setFillColor(sf::Color(m_player.m_body.getFillColor().r, m_player.m_body.getFillColor().g,
+			m_player.m_body.getFillColor().b, m_player.m_body.getFillColor().a - 1));
+	}*/
+	for (int i = 0; i < world.map.size(); i++)
+	{
+		if (world.map.at(i)->m_TileSprite.getColor().a > 0 && world.map.at(i)->tileType != Tile::DEFAULT)
+		{
+			world.map.at(i)->m_TileSprite.setColor(sf::Color(world.map.at(i)->m_TileSprite.getColor().r, world.map.at(i)->m_TileSprite.getColor().g,
+				world.map.at(i)->m_TileSprite.getColor().b, world.map.at(i)->m_TileSprite.getColor().a - 1));
+		}
+		else if (world.map.at(i)->m_TileSprite.getColor().a > 25)
+		{
+			world.map.at(i)->m_TileSprite.setColor(sf::Color(world.map.at(i)->m_TileSprite.getColor().r, world.map.at(i)->m_TileSprite.getColor().g,
+				world.map.at(i)->m_TileSprite.getColor().b, world.map.at(i)->m_TileSprite.getColor().a - 1));
+
+		}
+	}
 }

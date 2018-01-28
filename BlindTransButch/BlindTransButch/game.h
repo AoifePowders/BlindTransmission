@@ -59,6 +59,7 @@ private:
 	void checkCollision();
 	void loadLevel(int levelnum);
 	void loadSounds();
+	void darken();
 	std::vector<std::shared_ptr<Audio>> soundEffects;
 	std::vector<std::shared_ptr<Audio>> catMeows;
 	std::vector<std::shared_ptr<Audio>> enemySounds;
