@@ -26,6 +26,7 @@ void Player::setUp()
 	m_body.setFillColor(sf::Color::White);
 	m_body.setPosition(m_position);
 	m_body.setSize(m_size);
+	m_body.setOrigin(m_body.getSize().x * .5, m_body.getSize().y * .5);
 }
 
 void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)

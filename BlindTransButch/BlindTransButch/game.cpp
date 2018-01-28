@@ -24,7 +24,7 @@ void Game::run()
 
 
 	//Initialise
-	world.initialise(1);
+	loadLevel(1);
 
 
 
@@ -144,30 +144,10 @@ void Game::checkCollision()
 			{
 				//EXIT, LOAD NEXT LEVEL
 				currentLevel++;
-				switch (currentLevel)
-				{
-				case 2:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(2);
-					break;
-				case 3:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(3);
-					break;
-				case 4:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(4);
-					break;
-				case 5:
-					m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
-					world.initialise(5);
-					break;
-				default:
-					break;
-				}
+				loadLevel(currentLevel);
 			}
 		}
-		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT)
+		if (cManager.checkCollision(m_player.m_body, world.map.at(i)->bounds) && world.map.at(i)->tileType != Tile::DEFAULT && world.map.at(i)->tileType != Tile::EXIT)
 		{
 			float offsetX = cManager.getHorizontalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
 			float offsetY = cManager.getVerticalIntersectionDepth(cManager.asFloatRect(m_player.m_body), cManager.asFloatRect(world.map.at(i)->bounds));
@@ -182,5 +162,33 @@ void Game::checkCollision()
 			}
 		}
 		
+	}
+}
+void Game::loadLevel(int levelnum)
+{
+	switch (currentLevel)
+	{
+	case 1:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(1);
+		break;
+	case 2:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(2);
+		break;
+	case 3:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(3);
+		break;
+	case 4:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(4);
+		break;
+	case 5:
+		m_player.m_position = sf::Vector2f(86 * 2, 86 * 6);
+		world.initialise(5);
+		break;
+	default:
+		break;
 	}
 }
