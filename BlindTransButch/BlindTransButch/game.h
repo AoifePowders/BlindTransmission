@@ -15,6 +15,8 @@
 #include "CollisionManager.h"
 #include "Vase.h"
 #include "MainMenu.h"
+
+#include "Radio.h"
 #include "Win.h"
 #include "Lose.h"
 #include "Credits.h"
@@ -54,6 +56,8 @@ private:
 	Enemy m_enemy;
 	Vase m_vase;
 	
+	Radio m_radio;
+
 	Cat m_cats[5];
 	Credits m_creditsScreen;
 	MainMenu m_mainMenuScreen;
