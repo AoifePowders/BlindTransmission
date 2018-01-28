@@ -33,11 +33,11 @@ void Player::setUp(std::vector<std::shared_ptr<Audio>> s)
 	m_body.setOrigin(m_body.getSize().x * .5, m_body.getSize().y * .5);
 }
 
-void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller)
+void Player::update(sf::Time t_deltaTime, Xbox360Controller &t_controller, Enemy & enemy)
 {
 	//Sound emitters
 	m_breathTimer--;
-	playerCalls(t_controller);
+	playerCalls(t_controller, enemy);
 	for (int i = 0; i < m_calls.size(); i++)
 	{
 		if (m_calls.at(i)->alive)
@@ -179,7 +179,7 @@ void Player::render(sf::RenderWindow & t_window)
 	}
 	t_window.draw(m_body);
 }
-void Player::playerCalls(Xbox360Controller &t_controller)
+void Player::playerCalls(Xbox360Controller &t_controller, Enemy & enemy)
 {
 
 	if (m_breathTimer < 0)
@@ -187,24 +187,28 @@ void Player::playerCalls(Xbox360Controller &t_controller)
 		//Low scan
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || t_controller.m_currentState.B)
 		{
+			enemy.m_target = m_position;
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(0), 10, sf::Color::White));
 			m_breathTimer = 100;
 		}
 		//high Scan
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || t_controller.m_currentState.A)
 		{
+			enemy.m_target = m_position;
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(1), 15, sf::Color::Magenta));
 			m_breathTimer = 200;
 		}
 		//Low Cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || t_controller.m_currentState.X)
 		{
+			enemy.m_target = m_position;
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(2), 10, sf::Color::Green));
 			m_breathTimer = 100;
 		}
 		//High cat
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || t_controller.m_currentState.Y)
 		{
+			enemy.m_target = m_position;
 			m_calls.push_back(new SoundEmitter(sf::Vector2f(m_position.x, m_position.y), m_sounds.at(3), 15, sf::Color::Cyan));
 			m_breathTimer = 200;
 		}

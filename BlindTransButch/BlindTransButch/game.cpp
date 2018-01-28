@@ -46,7 +46,7 @@ void Game::run()
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
 			update(timePerFrame); //60 fps
-			m_player.update(timePerFrame, m_controller);
+			m_player.update(timePerFrame, m_controller, m_enemy);
 		}
 		render(); // as many as possible
 	}
@@ -123,6 +123,7 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::PLAYING:
 		world.update();
 		m_player.move(m_controller);
+		m_enemy.update();
 		checkCollision();
 		break;
 	case GameState::WIN:

@@ -17,12 +17,10 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::update(sf::Vector2f t_soundPos)
+void Enemy::update()
 {
-	if (m_isMoving)
-	{
-		move(t_soundPos);
-	}
+	move();
+	m_body.setPosition(m_position);
 }
 
 void Enemy::render(sf::RenderWindow & t_window)
@@ -30,7 +28,18 @@ void Enemy::render(sf::RenderWindow & t_window)
 	t_window.draw(m_body);
 }
 
-void Enemy::move(sf::Vector2f t_soundPos)
+void Enemy::move()
 {
+	sf::Vector2f direction;
+	direction.x = m_target.x - m_position.x;
+	direction.y = m_target.y- m_position.y;
+
+	float hypot = sqrt(direction.x * direction.x + direction.y * direction.y);
+	direction.x /= hypot;
+	direction.y /= hypot;
+
+	m_position.x += direction.x * speed;
+	m_position.y += direction.y * speed;
 }
+
 
