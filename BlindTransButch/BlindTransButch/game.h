@@ -15,6 +15,7 @@
 #include "CollisionManager.h"
 #include "Vase.h"
 #include "MainMenu.h"
+#include "Radio.h"
 
 enum class GameState
 {
@@ -50,6 +51,8 @@ private:
 	Enemy m_enemy;
 	Vase m_vase;
 	
+	Radio m_radio;
+
 	Cat m_cats[5];
 	
 	MainMenu m_mainMenuScreen;

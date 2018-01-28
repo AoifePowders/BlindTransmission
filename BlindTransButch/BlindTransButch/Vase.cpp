@@ -30,6 +30,10 @@ void Vase::update()
 	{
 		m_body.setTexture(&m_vaseBrokenTexture);
 	}
+	else
+	{
+		m_body.setTexture(&m_vaseSolidTexture);
+	}
 	
 }
 
