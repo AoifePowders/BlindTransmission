@@ -22,30 +22,36 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
+    <ClCompile Include="Lose.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vase.cpp" />
+    <ClCompile Include="Win.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="Lose.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="screenSize.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vase.h" />
+    <ClInclude Include="Win.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>

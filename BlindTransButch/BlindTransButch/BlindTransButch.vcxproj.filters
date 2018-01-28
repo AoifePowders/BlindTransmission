@@ -38,6 +38,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Win.cpp" />
+    <ClCompile Include="Lose.cpp" />
+    <ClCompile Include="Credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cat.h">
@@ -77,6 +80,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Win.h" />
+    <ClInclude Include="Lose.h" />
+    <ClInclude Include="Credits.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png">
