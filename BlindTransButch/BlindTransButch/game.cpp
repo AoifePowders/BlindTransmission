@@ -50,6 +50,7 @@ Game::Game() :
 	m_winScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 	m_loseScreen.setUp(m_ArialBlackfont, m_knucklesTexture);
 	m_creditsScreen.setUp(m_ArialBlackfont);
+
 }
 
 Game::~Game()
@@ -420,7 +421,7 @@ void Game::darken()
 		m_player.m_body.setFillColor(sf::Color(m_player.m_body.getFillColor().r, m_player.m_body.getFillColor().g,
 			m_player.m_body.getFillColor().b, m_player.m_body.getFillColor().a - 1));
 	}
-	if (m_enemy.m_body.getFillColor().a > 0)
+	if (m_enemy.m_body.getFillColor().a > 50)
 	{
 		m_enemy.m_body.setFillColor(sf::Color(m_enemy.m_body.getFillColor().r, m_enemy.m_body.getFillColor().g,
 			m_enemy.m_body.getFillColor().b, m_enemy.m_body.getFillColor().a - 1));

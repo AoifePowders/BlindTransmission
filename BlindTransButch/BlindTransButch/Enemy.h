@@ -19,8 +19,8 @@ public:
 
 	bool m_isMoving{ false };
 
-	sf::Vector2f m_target{ 0,0 };
-	sf::Vector2f m_position{ 0,0 };
+	sf::Vector2f m_target{ 250, 101 };
+	sf::Vector2f m_position{ 100, 100 };
 
 	sf::RectangleShape m_body;
 
